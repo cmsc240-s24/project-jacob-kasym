@@ -14,4 +14,4 @@ See course web page [Project: C++ REST API](https://cmsc240-s24.github.io/projec
 ## Project Proposal
 
 Write your project proposal here...
-- We will create a messenger API that will rely on our own cryptography algorithm.  One user can send a message that securely encoded and then decoded and sent to a reciever.
+Design an API for managing events, including creation, scheduling, registration, and attendance tracking. Event organizers and planners can utilize this API to streamline the process of hosting and managing various types of events, from conferences and workshops to social gatherings and parties.
