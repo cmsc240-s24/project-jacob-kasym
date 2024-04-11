@@ -9,6 +9,9 @@ This API will allow for an easy line of communication between a touring artist a
 
 ## Stakeholders
 
+Artists: people who need events, will be able to schedule, organize tours, social gatherings and events. They are interested in attendance tracking, and overall event planning.
+
+Fans: they are interested in tracking the cities where the events of their favourite artists will be held. They rely on API to get the newest information about their artists and their tours and events.
 
 ## Functional Requirements
 
