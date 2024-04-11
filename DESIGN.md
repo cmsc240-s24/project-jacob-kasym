@@ -6,7 +6,7 @@ This API will allow for an easy line of communication between a touring artist a
 
 ## Background/Context
 
-When an performing artist decides to go on a tour, it can be hard to keep track of show dates/locations/times.  This is especially the case if they are a smaller group dealing with smaller venues, which are often liable to change/cancel.  New and longtime fans alike are often left scrambling at the last minute, scouring all of (if any) of bands and venues social media looking for last-minute changes.  The music
+When an performing artist decides to go on a tour, it can be hard to keep track of show dates/locations/times.  This is especially the case if they are a smaller group dealing with smaller venues, which are often liable to change/cancel.  New and longtime fans alike are often left scrambling at the last minute, scouring all of (if any) of bands and venues social media looking for last-minute changes.  This API should hopefully solve this problem by offering a line a communication from the artist to the fans, letting the artist add/delete/update shows as their information changes, and letting fans immediately see those changes.  Ideally, the fans can then sort/search through theses shows by their date/location, and if a recording of a finished show exists, the fan can listen to/watch it.
 
 ## Stakeholders
 
