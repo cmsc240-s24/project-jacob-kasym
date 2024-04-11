@@ -52,6 +52,14 @@ When an performing artist decides to go on a tour, it can be hard to keep track 
 ## Use Case Description
 
 
+### Events
+- **Create (POST)**
+   - As an artist, I want to be able to add a new event when
+
+- **Read (GET)**
+   - As a fan
+### Past Events
+
 ## List Of Resources
 
 
