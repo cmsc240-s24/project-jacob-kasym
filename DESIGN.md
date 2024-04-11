@@ -54,6 +54,10 @@ When an performing artist decides to go on a tour, it can be hard to keep track 
 
 ## List Of Resources
 
+-**Past events**: events that occured 6 months before the current date
+-**Future events**: events that will occur and are planned in the next 6 months
+-**Artist**: artist who will hold the event
+-**Location**: city and its events that were in the past and the future
 
 ## List of End Points
 
