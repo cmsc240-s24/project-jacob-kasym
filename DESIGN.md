@@ -215,17 +215,6 @@ In the context of this API, {id} would typically be replaced by a unique identif
    - **Response**: `200 OK` with the Venue object in the body.
    - **Error**: `404 Not Found` if the Venue does not exist.
 
-- **PUT** `/api/venues/{venue}`
-   - **Desciption**:  Updates an existing Venue.
-   - **Request BODY**: `{"city": "Toronto ON", "address": "290 Bremner Blvd", "cost": 10, "space": 300}`
-   - **Response**: `200 OK` with the updated Venue object in the body.
-   - **Error**: `400 Bad Request` if input validation fails; `404 Not Found` if the Venue does not exist; `403 Forbidden` if the user is unauthorzied.
-
-- **DELETE** `/api/venue/{venues}`
-   - **Description**: Deletes a specific Venue
-   - **Response**: `204 No Content`.
-   - **Error**: `404 Not Found` if the Venue does not exist; `403 Forbidden` if the user is unauthorzied.
-
 ### Error Handling Strategies
 - **Validation Errors**: Respond with `400 Bad Request` and include the error details.
 - **Authentication/Authorization Errors**: Utilize `401 Unauthorized` for authentication issues and `403 Forbidden` for authorization issues.
