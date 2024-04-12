@@ -174,6 +174,15 @@ In the context of this API, {id} would typically be replaced by a unique identif
 
 ### Artist
 
+### Error Handling Strategies
+- **Validation Errors**: Respond with `400 Bad Request` and include the error details.
+- **Authentication/Authorization Errors**: Utilize `401 Unauthorized` for authentication issues and `403 Forbidden` for authorization issues.
+- **Not Found Errors**: Use `404 Not Found` when a resource cannot be located.
+- **Server Errors**: Respond with `500 Internal Server Error` for unexpected server-side issues.
+
+This API will also use standard HTTP status codes to communicate the outcome of API requests, ensuring that clients can handle responses appropriately.
+
+
 ## UML Diagrams
 
 ![Event Planner UML Diagram](EventPlannerUML.png)
