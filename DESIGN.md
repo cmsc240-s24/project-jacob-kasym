@@ -173,7 +173,58 @@ In the context of this API, {id} would typically be replaced by a unique identif
    - **Error**: `404 Not Found` if the Event does not exist; `403 Forbidden` if the user is unauthorzied.
 
 ### Artist
+- **POST** `/api/artists`
+   - **Description**: Create a new Artist.
+   - **Request BODY**: `{"name": "BNL", "type": "Canadian Alt-Rock Band", "members": ["Ed Robertson", "Tyler Stewart"]}`
+   - **Response**: `201 Created` with the created Artist object in the body.
+   - **Error**: `400 Bad Request` if input validation fails; `403 Forbidden` if the user is unauthorzied.
 
+- **GET** `/api/artists`
+   - **Description**: Retrieves a list of all Artists.
+   - **Response**: `200 OK` with an array of Artist objects in the body.
+
+- **GET** `/api/artists/{artist}`
+   - **Description**: Retrieves the details of the specific Artist.
+   - **Response**: `200 OK` with the Artist object in the body.
+   - **Error**: `404 Not Found` if the Artist does not exist.
+
+- **PUT** `/api/artists/{artist}`
+   - **Desciption**:  Updates an existing Artist.
+   - **Request BODY**: `{"name": "BNL", "type": "Canadian Alt-Rock Band", "members": ["Ed Robertson", "Tyler Stewart"]}`
+   - **Response**: `200 OK` with the updated Artist object in the body.
+   - **Error**: `400 Bad Request` if input validation fails; `404 Not Found` if the Event does not exist; `403 Forbidden` if the user is unauthorzied.
+
+- **DELETE** `/api/artists/{artist}`
+   - **Description**: Deletes a specific Artist
+   - **Response**: `204 No Content`.
+   - **Error**: `404 Not Found` if the Artist does not exist; `403 Forbidden` if the user is unauthorzied.
+
+### Venue
+- **POST** `/api/venues`
+   - **Description**: Create a new Venue.
+   - **Request BODY**: `{"city": "Toronto ON", "address": "290 Bremner Blvd", "cost": 10, "space": 300}`
+   - **Response**: `201 Created` with the created Venue object in the body.
+   - **Error**: `400 Bad Request` if input validation fails; `403 Forbidden` if the user is unauthorzied.
+
+- **GET** `/api/venues`
+   - **Description**: Retrieves a list of all venues.
+   - **Response**: `200 OK` with an array of Venue objects in the body.
+
+- **GET** `/api/venues/{venue}`
+   - **Description**: Retrieves the details of the specific Venue.
+   - **Response**: `200 OK` with the Venue object in the body.
+   - **Error**: `404 Not Found` if the Venue does not exist.
+
+- **PUT** `/api/venues/{venue}`
+   - **Desciption**:  Updates an existing Venue.
+   - **Request BODY**: `{"city": "Toronto ON", "address": "290 Bremner Blvd", "cost": 10, "space": 300}`
+   - **Response**: `200 OK` with the updated Venue object in the body.
+   - **Error**: `400 Bad Request` if input validation fails; `404 Not Found` if the Venue does not exist; `403 Forbidden` if the user is unauthorzied.
+
+- **DELETE** `/api/venue/{venues}`
+   - **Description**: Deletes a specific Venue
+   - **Response**: `204 No Content`.
+   - **Error**: `404 Not Found` if the Venue does not exist; `403 Forbidden` if the user is unauthorzied.
 ## UML Diagrams
 
 ![Event Planner UML Diagram](EventPlannerUML.png)
