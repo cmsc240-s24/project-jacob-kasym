@@ -54,18 +54,51 @@ When an performing artist decides to go on a tour, it can be hard to keep track 
 
 ### Events
 - **Create (POST)**
-   - As an artist, I want to be able to add a new event when
+   - As an artist, I want to be able to add a new event that I am going to hold at some city.
 
 - **Read (GET)**
-   - As a fan
+   - As a customer or as an artist, I would like to know which events are going to be held in the next 6 months using this platform.
+
+- **Update (PUT)**
+   - As an artist, I want to update future event's date if time conflict appears.
+
+- **Delete (DELETE)**
+   - As an artist, I want to delete my future event if it gets cancelled.
 ### Past Events
+- **Create (POST)**
+   - As a customer, I want to leave a comment/review about past event
+- **Read (GET)**
+   - As a customer or as an artist, I want to get information about past events
+- **Update (PUT)**
+   - As an artist, I want to update previous event's description
+- **Delete (DELETE)**
+   - As an artist, I want to delete information about previous events
+
+### Artist
+- **Create (POST)**
+   - As an artist, I want to create a new profile of verified artist type
+- **Read (GET)**
+   - As an artist, I want to read comments on my previous events left by costumers
+
+   - As a customer, I want to read artist's profile description
+- **Update (PUT)**
+   - As an artist, I want to update my profile description
+- **Delete (DELETE)**
+   - As an artist, I want to delete my profile
+
+### Venue
+- **Create (POST)**
+   - As an artist, I want to add a new city where the event will be held, if no event was hosted before in that city
+- **Read (GET)**
+   - As a customer or as an artist, I want to see all events by location
+
 
 ## List Of Resources
 
 -**Past events**: events that occured 6 months before the current date
--**Future events**: events that will occur and are planned in the next 6 months
+-**Events**: events that will occur and are planned in the next 6 months
 -**Artist**: artist who will hold the event
--**Location**: city and its events that were in the past and the future
+-**Venue**: city and its events that were in the past and the future
 
 ## List of End Points
 
