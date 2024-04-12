@@ -103,12 +103,12 @@ When an performing artist decides to go on a tour, it can be hard to keep track 
 ## List of End Points
 In the context of this API, {id} would typically be replaced by a unique identifier for the resource, such as a string or a number that uniquely identifies an Event/Past Event.  {artist} would be replaced by an artist's name, and {venue} would be replaced by a city.
 
-### Events
+### Events/Past Events
 - **POST** `/api/events`
    - **Description**: Create a new Event.
    - **Request BODY**: `{"id": "1", "artist": "BNL", "venue": "Toronto ON", "cost": 10, "date": "5/11/2024", "time": "6:00 PM"}`
    - **Response**: `201 Created` with the created Event object in the body.
-   - **Error**: `400 Bad Request` if input validation fails.
+   - **Error**: `400 Bad Request` if input validation fails; `403 Forbidden` if the user is unauthorzied.
 
 - **GET** `/api/events`
    - **Description**: Retrieves a list of all Events, past or future.
@@ -119,8 +119,8 @@ In the context of this API, {id} would typically be replaced by a unique identif
    - **Response**: `200 OK` with the Event object in the body.
    - **Error**: `404 Not Found` if the Event does not exist.
 
-- **GET** `/api/events?future`
-   - **Desciption**: Retrieves a list of all future Events
+- **GET** `/api/events?upcoming`
+   - **Desciption**: Retrieves a list of all upcoming Events
    - **Response**: `200 OK` with an array of Event objects in the body.
 
 - **GET** `/api/events?past`
@@ -139,17 +139,40 @@ In the context of this API, {id} would typically be replaced by a unique identif
    - **Desciption**: Retrieves a list of all Events in order of when they occur.
    - **Response**: `200 OK` with an array of Event objects in the body.
 
+- **GET** `/api/events/{id}?review`
+   - **Description**: Gives a random review from the Past Event.
+   - **Response**: `200 OK` with the random review in the body.
+   - **Error**: `400 Bad Request` if the event is not a Past Event; `404 Not Found` if the Event does not exist;
+
+- **GET** `/api/events/{id}?recording`
+   - **Description**: Plays a recording of a past event if it exists.
+   - **Response**: `200 OK` while playing the recording if found, the message, none found if not recorded.
+   - **Error**: `400 Bad Request` if the event is not a Past Event; `404 Not Found` if the Event does not exist;
+
 - **PUT** `/api/events/{id}`
    - **Desciption**:  Updates an existing Event.
    - **Request BODY**: `{"id": "1", "artist": "BNL", "venue": "Toronto ON", "cost": 10, "date": "5/11/2024", "time": "6:00 PM"}`
    - **Response**: `200 OK` with the updated Event object in the body.
-   - **Error**: `400 Bad Request` if input validation fails; `404 Not Found` if the Event does not exist.
+   - **Error**: `400 Bad Request` if input validation fails; `404 Not Found` if the Event does not exist; `403 Forbidden` if the user is unauthorzied.
 
 - **PUT** `/api/events/{id}?finished`
-   - **Desciption**:  Updates an existing Event.
-   - **Request BODY**: `{"id": "1", "artist": "BNL", "venue": "Toronto ON", "cost": 10, "date": "5/11/2024", "time": "6:00 PM"}`
+   - **Desciption**:  Turns a normal event into a Past Event/Updates a Past Event.
+   - **Request BODY**: `{"id": "1", "artist": "BNL", "venue": "Toronto ON", "cost": 10, "date": "5/11/2024", "time": "6:00 PM", "wasRecorded": true, "recording": "TorontoShow.mp3", "attendence": 1000, "reviews":["it was cool"]}`
    - **Response**: `200 OK` with the updated Event object in the body.
-   - **Error**: `400 Bad Request` if input validation fails; `404 Not Found` if the Event does not exist.
+   - **Error**: `400 Bad Request` if input validation fails; `404 Not Found` if the Event does not exist; `403 Forbidden` if the user is unauthorzied.
+
+- **PUT** `/api/events/{id}?review`
+   - **Description**: Adds a review to the Past Event
+   - **Request BODY**: `"it was cool"`
+   - **Response**: `200 OK` with the new review in the body.
+   - **Error**: `400 Bad Request` if the event is not a past event; `404 Not Found` if the Event does not exist;
+
+- **DELETE** `/api/events/{id}`
+   - **Description**: Deletes a specific event
+   - **Response**: `204 No Content`.
+   - **Error**: `404 Not Found` if the Event does not exist; `403 Forbidden` if the user is unauthorzied.
+
+### Artist
 
 ## UML Diagrams
 
