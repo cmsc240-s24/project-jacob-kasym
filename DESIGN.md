@@ -105,3 +105,4 @@ When an performing artist decides to go on a tour, it can be hard to keep track 
 
 ## UML Diagrams
 
+![Event Planner UML Diagram](EventPlannerUML.png)
