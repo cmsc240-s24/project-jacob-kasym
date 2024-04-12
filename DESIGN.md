@@ -101,7 +101,55 @@ When an performing artist decides to go on a tour, it can be hard to keep track 
 - **Venue**: city and its events that were in the past and the future
 
 ## List of End Points
+In the context of this API, {id} would typically be replaced by a unique identifier for the resource, such as a string or a number that uniquely identifies an Event/Past Event.  {artist} would be replaced by an artist's name, and {venue} would be replaced by a city.
 
+### Events
+- **POST** `/api/events`
+   - **Description**: Create a new Event.
+   - **Request BODY**: `{"id": "1", "artist": "BNL", "venue": "Toronto ON", "cost": 10, "date": "5/11/2024", "time": "6:00 PM"}`
+   - **Response**: `201 Created` with the created Event object in the body.
+   - **Error**: `400 Bad Request` if input validation fails.
+
+- **GET** `/api/events`
+   - **Description**: Retrieves a list of all Events, past or future.
+   - **Response**: `200 OK` with an array of Event objects in the body.
+
+- **GET** `/api/events/{id}`
+   - **Description**: Retrieves the details of the specific Event.
+   - **Response**: `200 OK` with the Event object in the body.
+   - **Error**: `404 Not Found` if the Event does not exist.
+
+- **GET** `/api/events?future`
+   - **Desciption**: Retrieves a list of all future Events
+   - **Response**: `200 OK` with an array of Event objects in the body.
+
+- **GET** `/api/events?past`
+   - **Desciption**: Retrieves a list of all past Events
+   - **Response**: `200 OK` with an array of Event objects in the body.
+
+- **GET** `/api/events?location={venue}`
+   - **Desciption**: Retrieves a list of all Events in a specific city.
+   - **Response**: `200 OK` with an array of Event objects in the body.
+
+- **GET** `/api/events?artist={artist}`
+   - **Desciption**: Retrieves a list of all Events by a specific artist.
+   - **Response**: `200 OK` with an array of Event objects in the body.
+
+- **GET** `/api/events?sort={date}`
+   - **Desciption**: Retrieves a list of all Events in order of when they occur.
+   - **Response**: `200 OK` with an array of Event objects in the body.
+
+- **PUT** `/api/events/{id}`
+   - **Desciption**:  Updates an existing Event.
+   - **Request BODY**: `{"id": "1", "artist": "BNL", "venue": "Toronto ON", "cost": 10, "date": "5/11/2024", "time": "6:00 PM"}`
+   - **Response**: `200 OK` with the updated Event object in the body.
+   - **Error**: `400 Bad Request` if input validation fails; `404 Not Found` if the Event does not exist.
+
+- **PUT** `/api/events/{id}?finished`
+   - **Desciption**:  Updates an existing Event.
+   - **Request BODY**: `{"id": "1", "artist": "BNL", "venue": "Toronto ON", "cost": 10, "date": "5/11/2024", "time": "6:00 PM"}`
+   - **Response**: `200 OK` with the updated Event object in the body.
+   - **Error**: `400 Bad Request` if input validation fails; `404 Not Found` if the Event does not exist.
 
 ## UML Diagrams
 
