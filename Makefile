@@ -1,4 +1,7 @@
-all: static-analysis run-unit-tests docs
+all: Artist.o static-analysis run-unit-tests docs
+
+Artist.o: Artist.cpp Artist.h
+	g++ Artist.cpp -c
 
 static-analysis:
 	cppcheck *.cpp
@@ -6,14 +9,14 @@ static-analysis:
 docs: Artist.h
 	doxygen doxyfile
 
-ArtistTest: ArtistTest.cpp Artist.h
-	g++ ArtistTest.cpp -o ArtistTest
+ArtistTest: ArtistTest.cpp Artist.cpp Artist.h
+	g++ ArtistTest.cpp Artist.o -o ArtistTest
 
 run-unit-tests: ArtistTest
 	./ArtistTest
 
 clean-code:
-	rm -f
+	rm -f Artist.o
 
 clean-docs:
 	rm -r -f ./docs

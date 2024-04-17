@@ -17,16 +17,8 @@ using namespace std;
 */
 Artist::Artist(string initialName, string initialType)
 {
-    if (initialName == "")
-    {
-        throw invalid_argument("Name can not be blank");
-    }
-    if (initialType == "")
-    {
-        throw invalid_argument("Description can not be blank");
-    }
-    name = initialName;
-    type = initialType;
+    setName(initialName);
+    setDescription(initialType);
 }
 
 /**
@@ -38,14 +30,11 @@ Artist::Artist(string initialName, string initialType)
  * @exception invalid_argument If the description is blank.
  * @exception invalid_argument If the member is blank.
 */
-Artist::Artist(string initialName, string initialType, string firstMember)
+Artist::Artist(string initialName, string initialType, string firstMember)   
 {
-    if (firstMember == "")
-    {
-        throw invalid_argument("Member can not be blank");
-    }
-    Artist(initialName, initialType);
-    members.push_back(firstMember);
+    setName(initialName);
+    setDescription(initialType);
+    addMember(firstMember);
 }
 
 /**
@@ -59,15 +48,21 @@ Artist::Artist(string initialName, string initialType, string firstMember)
 */
 Artist::Artist(string initialName, string initialType, vector<string> initialMembers)
 { 
+    setName(initialName);
+    setDescription(initialType);
     for (int i = 0; i < initialMembers.size(); i++)
     {
-        if (initialMembers.at(i) == "")
-        {
-            throw invalid_argument("Can not have a blank member");
-        }
+        addMember(initialMembers.at(i));
     }
-    Artist(initialName, initialType);
-    members = initialMembers;
+}
+
+/**
+ * @brief Shows the name of the artist.
+ * @return The string name.
+*/
+string Artist::getName()
+{
+    return name;
 }
 
 /**
@@ -76,7 +71,7 @@ Artist::Artist(string initialName, string initialType, vector<string> initialMem
  * @return The new name.
  * @exception invalid_argument If the new name is blank.
 */
-string Artist::setName(std::string newName)
+string Artist::setName(string newName)
 {
     if (newName == "")
     {
@@ -84,6 +79,15 @@ string Artist::setName(std::string newName)
     }
     name = newName;
     return name;
+}
+
+/**
+ * @brief Shows the description of the artist.
+ * @return The string description.
+*/
+string Artist::getDescription()
+{
+    return type;
 }
 
 /**

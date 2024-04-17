@@ -12,7 +12,7 @@
  * @class Artist
  * @brief A class that represents a touring Artist.
  * 
- *  description
+ *  Has basic functionality to get and set member variables.
 */
 class Artist
 {
@@ -56,7 +56,7 @@ public:
      * @brief Shows the name of the artist.
      * @return The string name.
     */
-    std::string getName() { return name; }
+    std::string getName();
     
     /**
      * @brief Changes the name of the Artist.
@@ -70,7 +70,7 @@ public:
      * @brief Shows the description of the artist.
      * @return The string description.
     */
-    std::string getDescription() { return type; }
+    std::string getDescription();
 
     /**
      * @brief Changes the description of the artist.
