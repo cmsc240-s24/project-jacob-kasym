@@ -4,8 +4,9 @@
 
 TEST_CASE("Testing Artist class functionality")
 {
-    Artist artist("Band", "Music", "John Doe")
+    Artist artist("Band", "Music", "John Doe");
 
+    
 
 
 }
