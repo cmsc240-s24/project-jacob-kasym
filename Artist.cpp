@@ -8,22 +8,20 @@
 #include "Artist.h"
 using namespace std;
 
-template <typename T>
-Artist<T>::Artist(string initialName, string initialType, T initialCost)
+
+Artist::Artist(string initialName, string initialType, float initialCost)
 {
     setName(initialName);
     setDescription(initialType);
     setCost(initialCost);
 }
 
-template <typename T>
-string Artist<T>::getName()
+string Artist::getName()
 {
     return name;
 }
 
-template <typename T>
-string Artist<T>::setName(string newName)
+string Artist::setName(string newName)
 {
     if (newName == "")
     {
@@ -33,14 +31,12 @@ string Artist<T>::setName(string newName)
     return name;
 }
 
-template <typename T>
-string Artist<T>::getDescription()
+string Artist::getDescription()
 {
     return type;
 }
 
-template <typename T>
-string Artist<T>::setDescription(string newType)
+string Artist::setDescription(string newType)
 {
     if (newType == "")
     {
@@ -50,15 +46,17 @@ string Artist<T>::setDescription(string newType)
     return type;
 }
 
-template <typename T>
-T Artist<T>::getCost()
+float Artist::getCost()
 {
     return cost;
 }
 
-template <typename T>
-T Artist<T>::setCost(T newCost)
+float Artist::setCost(float newCost)
 {
+    if (newCost < 0)
+    {
+        throw invalid_argument("New cost can not be negative");
+    }
     cost = newCost;
     return cost;
 }

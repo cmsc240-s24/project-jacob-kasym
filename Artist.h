@@ -28,7 +28,7 @@ public:
      * @param initialCost The float of the cost.
      * @exception invalid_argument If the name is blank.
      * @exception invalid_argument If the description is blank.
-     * @exception invalid_argument If the cost in negative.
+     * @exception invalid_argument If the cost is negative.
     */
     Artist(std::string initialName, std::string initialType, float initialCost);
     
@@ -68,7 +68,9 @@ public:
 
     /**
      * @brief Changes the cost of the artist.
+     * @param newCost The float cost.
      * @return The new cost.
+     * @exception invalid_argument If the cost is negative.
     */
     float setCost(float newCost);   
 };
