@@ -8,7 +8,6 @@
 #include <string>
 #include <vector>
 
-template <typename T>
 /**
  * @class Artist
  * @brief A class that represents a touring Artist.
@@ -20,17 +19,18 @@ class Artist
 private:
     std::string name;
     std::string type;
-    T cost;
+    float cost;
 public:
     /**
      * @brief The constructor.
      * @param initialName The string of the name.
      * @param initialType The string of the description.
-     * @param initialCost The cost.
+     * @param initialCost The float of the cost.
      * @exception invalid_argument If the name is blank.
      * @exception invalid_argument If the description is blank.
+     * @exception invalid_argument If the cost in negative.
     */
-    Artist(std::string initialName, std::string initialType, T initialCost);
+    Artist(std::string initialName, std::string initialType, float initialCost);
     
     /**
      * @brief Shows the name of the artist.
@@ -64,15 +64,13 @@ public:
      * @brief Shows the cost of the artist.
      * @return The cost.
     */
-    T getCost();
+    float getCost();
 
     /**
      * @brief Changes the cost of the artist.
      * @return The new cost.
     */
-    T setCost(T newCost);   
+    float setCost(float newCost);   
 };
-
-#include "Artist.cpp"
 
 #endif

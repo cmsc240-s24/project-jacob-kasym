@@ -20,20 +20,20 @@ class Venue
 private:
     std::string city;
     std::string address;
-    int capacity;
-    T cost;
+    T size;
+    float cost;
 public:
     /**
      * @brief The construtor.
      * @param initialCity The string of the city.
      * @param initialAdress The string of the adress.
-     * @param initialCapacity The int for the capacity.
-     * @param initialCost The cost.
+     * @param initialSize The size.
+     * @param initialCost The float for the cost.
      * @exception invalid_argument If the city is blank.
      * @exception invalid_argument If the address is blank.
-     * @exception invalid_argument If the capacity is non-positive.
+     * @exception invalid_argument If the cost is negative.
     */
-    Venue(std::string initialCity, std::string initialAddress, int initialCapacity, T initialCost);
+    Venue(std::string initialCity, std::string initialAddress, T initialSize, float initialCost);
     
     /**
      * @brief Shows the city of the venue.
@@ -67,26 +67,26 @@ public:
      * @brief Shows the capacity of the venue.
      * @return The int capacity.
     */
-    int getCapacity();
+    T getCapacity();
 
     /**
      * @brief Changes the capacity of the venue.
      * @return The new capacity.
      * @exception invalid_argument If the capcity is non-postive.
     */
-    int setCapacity(int newCapacity);
+    T setCapacity(T newCapacity);
 
     /**
      * @brief Shows the cost of the venue.
      * @return The cost.
     */
-    T getCost();
+    float getCost();
 
     /**
      * @brief Changes the cost of the venue.
      * @return The new cost.
     */
-    T setCost(T newCost);
+    float setCost(float newCost);
 };
 
 #include "Venue.cpp"

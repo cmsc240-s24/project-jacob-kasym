@@ -13,7 +13,7 @@ TEST_CASE("Testing Artist class functionality")
     
     Artist<int> artist("Band", "Music", 10);
     Artist<float> artist2("Comedian", "Comedy", 4.5);
-    Artist<string> artist3("Troupe", "Theatre", "Free");
+    Artist<std::string> artist3("Troupe", "Theatre", "Free");
 
 
     SUBCASE("getName should return the set name")

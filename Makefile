@@ -1,7 +1,7 @@
 all: Artist.o static-analysis run-unit-tests docs
 
 Artist.o: Artist.cpp Artist.h
-	g++ -c
+	g++ Artist.cpp -c 
 
 static-analysis:
 	cppcheck *.cpp
@@ -16,7 +16,7 @@ run-unit-tests: ArtistTest
 	./ArtistTest
 
 clean-code:
-	rm -f Artist.o
+	rm -f Artist.o ArtistTest
 
 clean-docs:
 	rm -r -f ./docs
