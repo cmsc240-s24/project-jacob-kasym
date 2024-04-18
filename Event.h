@@ -15,7 +15,6 @@
  * 
  *  Has basic functionality to get and set artist, date and time, costs for an event.
 */
-template <typename T>
 class Event
 {
 private: 
@@ -24,7 +23,7 @@ private:
     Venue location;
     std::string date;
     std::string time;
-}
+
 
 public:
     /**
@@ -65,7 +64,7 @@ public:
      * @brief Getting cost of the event ticket
      * @return T cost of the event
     */
-    T getCost();
+    float getCost();
 
     /**
      * @brief Getting date and time of the event
@@ -91,6 +90,6 @@ public:
      * @param Venue location : new location of the event
     */
     void setWhere(Venue location);
-
+};
 
 #endif
