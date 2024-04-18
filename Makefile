@@ -12,11 +12,14 @@ docs: Artist.h
 ArtistTest: ArtistTest.cpp Artist.cpp Artist.h
 	g++ ArtistTest.cpp Artist.o -o ArtistTest
 
-run-unit-tests: ArtistTest
-	./ArtistTest
+VenueTest: VenueTest.cpp Artist.cpp Artist.h
+	g++ VenueTest.cpp -o VenueTest
+
+run-unit-tests: ArtistTest VenueTest
+	./ArtistTest; ./VenueTest
 
 clean-code:
-	rm -f Artist.o ArtistTest
+	rm -f Artist.o ArtistTest VenueTest
 
 clean-docs:
 	rm -r -f ./docs

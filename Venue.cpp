@@ -8,67 +8,75 @@
 #include "Venue.h"
 using namespace std;
 
-/**
- * @brief The construtor.
- * @param initialCity The string of the city.
- * @param initialAdress The string of the adress.
- * @param initialCapacity The int for the capacity.
- * @param initialCost The cost.
- * @exception invalid_argument If the city is blank.
- * @exception invalid_argument If the address is blank.
- * @exception invalid_argument If the capacity is non-positive.
-*/
-Venue(std::string initialCity, std::string initialAddress, int initialCapacity, T initialCost);
+template <typename T>
+Venue<T>::Venue(string initialCity, string initialAddress, T initialCapacity, float initialCost)
+{
+    setCity(initialCity);
+    setAddress(initialAddress);
+    setCapacity(initialCapacity);
+    setCost(initialCost);
+}
 
-/**
- * @brief Shows the city of the venue.
- * @return The string city.
-*/
-std::string getCity();
+template <typename T>
+string Venue<T>::getCity()
+{
+    return city;
+}
 
-/**
- * @brief Changes the city of the Venue.
- * @param newCity The new city.
- * @return The new city.
- * @exception invalid_argument If the new city is blank.
-*/
-std::string setCity(std::string newCity);
+template <typename T>
+string Venue<T>::setCity(string newCity)
+{
+    if (newCity == "")
+    {
+        throw invalid_argument("New city can not be blank");
+    }
+    city = newCity;
+    return city;
+}
 
-/**
- * @brief Shows the address of the venue.
- * @return The string address.
-*/
-std::string getAddress();
+template <typename T>
+string Venue<T>::getAddress()
+{
+    return address;
+}
 
-/**
- * @brief Changes the address of the venue.
- * @param newAddress The new address.
- * @return The new address.
- * @exception invalid_argument If the new address is blank.
-*/
-std::string setAddress(std::string newAddress);
+template <typename T>
+string Venue<T>::setAddress(string newAddress)
+{
+    if (newAddress == "")
+    {
+        throw invalid_argument("New address can not be blank");
+    }
+    address = newAddress;
+    return address;
+}
 
-/**
- * @brief Shows the capacity of the venue.
- * @return The int capacity.
-*/
-int getCapacity();
+template <typename T>
+T Venue<T>::getCapacity()
+{
+    return size;
+}
 
-/**
- * @brief Changes the capacity of the venue.
- * @return The new capacity.
- * @exception invalid_argument If the capcity is non-postive.
-*/
-int setCapacity(int newCapacity);
+template <typename T>
+T Venue<T>::setCapacity(T newCapacity)
+{
+    size = newCapacity;
+    return size;
+}
 
-/**
- * @brief Shows the cost of the venue.
- * @return The cost.
-*/
-T getCost();
+template <typename T>
+float Venue<T>::getCost()
+{
+    return cost;
+}
 
-/**
- * @brief Changes the cost of the venue.
- * @return The new cost.
-*/
-T setCost(T newCost);
+template <typename T>
+float Venue<T>::setCost(float newCost)
+{
+    if (newCost < 0)
+    {
+        throw invalid_argument("New cost can not be negative");
+    }
+    cost = newCost;
+    return cost;
+}
