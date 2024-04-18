@@ -1,7 +1,7 @@
 all: Artist.o static-analysis run-unit-tests docs
 
 Artist.o: Artist.cpp Artist.h
-	g++ Artist.cpp -c
+	g++ -c
 
 static-analysis:
 	cppcheck *.cpp

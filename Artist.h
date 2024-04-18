@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 
+template <typename T>
 /**
  * @class Artist
  * @brief A class that represents a touring Artist.
@@ -18,39 +19,18 @@ class Artist
 {
 private:
     std::string name;
-    std::vector<std::string> members;
     std::string type;
+    T cost;
 public:
     /**
-     * @brief Basic constructor with no members.
+     * @brief The constructor.
      * @param initialName The string of the name.
      * @param initialType The string of the description.
+     * @param initialCost The cost.
      * @exception invalid_argument If the name is blank.
      * @exception invalid_argument If the description is blank.
     */
-    Artist(std::string initialName, std::string initialType);
-
-    /**
-     * @brief Constructor with one member.
-     * @param initialName The string of the name.
-     * @param initialType The string of the description.
-     * @param firstMember The string name of the member.
-     * @exception invalid_argument If the name is blank.
-     * @exception invalid_argument If the description is blank.
-     * @exception invalid_argument If the member is blank.
-    */
-    Artist(std::string initialName, std::string initialType, std::string firstMember);
-
-    /**
-     * @brief Constructor with multiple members.
-     * @param initialName The string of the name.
-     * @param initialType The string of the description.
-     * @param initialMembers The string vector of the members.
-     * @exception invalid_argument If the name is blank.
-     * @exception invalid_argument If the description is blank.
-     * @exception invlaide_argument If any member is blank.
-    */
-    Artist(std::string initialName, std::string initialType, std::vector<std::string> initialMembers);
+    Artist(std::string initialName, std::string initialType, T initialCost);
     
     /**
      * @brief Shows the name of the artist.
@@ -81,18 +61,18 @@ public:
     std::string setDescription(std::string newType);
 
     /**
-     * @brief Shows everyone who is in the Artist group.
-     * @return The vector of members.
+     * @brief Shows the cost of the artist.
+     * @return The cost.
     */
-    std::vector<std::string> getMembers() { return members; }
+    T getCost();
 
     /**
-     * @brief Adds a new member to the members vector.
-     * @param newMember The member string to be added.
-     * @return The new member.
-     * @exception invalid_argument If the new member is blank.
+     * @brief Changes the cost of the artist.
+     * @return The new cost.
     */
-    std::string addMember(std::string newMember);
+    T setCost(T newCost);   
 };
+
+#include "Artist.cpp"
 
 #endif
