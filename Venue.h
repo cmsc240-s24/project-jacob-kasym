@@ -21,7 +21,7 @@ private:
     std::string city;
     std::string address;
     T size;
-    float cost;
+    double cost;
 public:
     /**
      * @brief The construtor.
@@ -33,7 +33,7 @@ public:
      * @exception invalid_argument If the address is blank.
      * @exception invalid_argument If the cost is negative.
     */
-    Venue(std::string initialCity, std::string initialAddress, T initialSize, float initialCost);
+    Venue(std::string initialCity, std::string initialAddress, T initialSize, double initialCost);
     
     /**
      * @brief Shows the city of the venue.
@@ -80,13 +80,13 @@ public:
      * @brief Shows the cost of the venue.
      * @return The cost.
     */
-    float getCost();
+    double getCost();
 
     /**
      * @brief Changes the cost of the venue.
      * @return The new cost.
     */
-    float setCost(float newCost);
+    double setCost(double newCost);
 };
 
 #include "Venue.cpp"

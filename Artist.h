@@ -19,7 +19,7 @@ class Artist
 private:
     std::string name;
     std::string type;
-    float cost;
+    double cost;
 public:
     /**
      * @brief The constructor.
@@ -30,7 +30,7 @@ public:
      * @exception invalid_argument If the description is blank.
      * @exception invalid_argument If the cost is negative.
     */
-    Artist(std::string initialName, std::string initialType, float initialCost);
+    Artist(std::string initialName, std::string initialType, double initialCost);
     
     /**
      * @brief Shows the name of the artist.
@@ -64,7 +64,7 @@ public:
      * @brief Shows the cost of the artist.
      * @return The cost.
     */
-    float getCost();
+    double getCost();
 
     /**
      * @brief Changes the cost of the artist.
@@ -72,7 +72,7 @@ public:
      * @return The new cost.
      * @exception invalid_argument If the cost is negative.
     */
-    float setCost(float newCost);   
+    double setCost(double newCost);   
 };
 
 #endif

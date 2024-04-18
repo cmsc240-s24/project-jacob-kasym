@@ -9,7 +9,7 @@
 using namespace std;
 
 template <typename T>
-Venue<T>::Venue(string initialCity, string initialAddress, T initialCapacity, float initialCost)
+Venue<T>::Venue(string initialCity, string initialAddress, T initialCapacity, double initialCost)
 {
     setCity(initialCity);
     setAddress(initialAddress);
@@ -65,13 +65,13 @@ T Venue<T>::setCapacity(T newCapacity)
 }
 
 template <typename T>
-float Venue<T>::getCost()
+double Venue<T>::getCost()
 {
     return cost;
 }
 
 template <typename T>
-float Venue<T>::setCost(float newCost)
+double Venue<T>::setCost(double newCost)
 {
     if (newCost < 0)
     {

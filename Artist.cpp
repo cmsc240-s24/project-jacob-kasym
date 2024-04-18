@@ -9,7 +9,7 @@
 using namespace std;
 
 
-Artist::Artist(string initialName, string initialType, float initialCost)
+Artist::Artist(string initialName, string initialType, double initialCost)
 {
     setName(initialName);
     setDescription(initialType);
@@ -46,12 +46,12 @@ string Artist::setDescription(string newType)
     return type;
 }
 
-float Artist::getCost()
+double Artist::getCost()
 {
     return cost;
 }
 
-float Artist::setCost(float newCost)
+double Artist::setCost(double newCost)
 {
     if (newCost < 0)
     {
