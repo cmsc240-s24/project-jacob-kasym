@@ -5,8 +5,8 @@
 #ifndef VENUE_H
 #define VENUE_H
 
+#include <crow.h>
 #include <string>
-#include <vector>
 
 /**
  * @class Venue
@@ -22,7 +22,7 @@ private:
     double cost;
 public:
     /**
-     * @brief The construtor.
+     * @brief The construtor for direct parameters.
      * @param initialCity The string of the city.
      * @param initialAdress The string of the adress.
      * @param initialSize The size.
@@ -32,7 +32,16 @@ public:
      * @exception invalid_argument If the cost is negative.
     */
     Venue(std::string initialCity, std::string initialAddress, double initialCost);
-    
+
+    /**
+     * @brief The constructor for json.
+     * @param readValueJson The json form of the venue
+     * @exception invalid_argument If the city is blank.
+     * @exception invalid_argument If the address is blank.
+     * @exception invalid_argument If the cost is negative.
+    */
+    Venue(crow::json::rvalue readValueJson);
+
     /**
      * @brief Shows the city of the venue.
      * @return The string city.
@@ -72,8 +81,21 @@ public:
      * @return The new cost.
     */
     double setCost(double newCost);
-};
 
-#include "Venue.cpp"
+    /**
+     * @brief Coverts the Venue instance into json.
+     * @return The json form of the venue.
+    */
+    crow::json::wvalue convertToJson();
+
+    /**
+     * @brief Updates an venue instance from given json.
+     * @param readValueJson The json to be read.
+     * @exception invalid_argument If the city is blank.
+     * @exception invalid_argument If the address is blank.
+     * @exception invalid_argument If the cost is negative.
+    */
+    void updateFromJson(crow::json::rvalue readValueJson);
+};
 
 #endif

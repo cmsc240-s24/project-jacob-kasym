@@ -5,8 +5,8 @@
 #ifndef ARTIST_H
 #define ARTIST_H
 
+#include <crow.h>
 #include <string>
-#include <vector>
 
 /**
  * @class Artist
@@ -22,7 +22,7 @@ private:
     double cost;
 public:
     /**
-     * @brief The constructor.
+     * @brief The constructor for direct parameters.
      * @param initialName The string of the name.
      * @param initialType The string of the description.
      * @param initialCost The float of the cost.
@@ -32,6 +32,15 @@ public:
     */
     Artist(std::string initialName, std::string initialType, double initialCost);
     
+    /**
+     * @brief The constructor for json.
+     * @param readValueJson The json form of the artist
+     * @exception invalid_argument If the name is blank.
+     * @exception invalid_argument If the description is blank.
+     * @exception invalid_argument If the cost is negative.
+    */
+    Artist(crow::json::rvalue readValueJson);
+
     /**
      * @brief Shows the name of the artist.
      * @return The string name.
@@ -72,7 +81,22 @@ public:
      * @return The new cost.
      * @exception invalid_argument If the cost is negative.
     */
-    double setCost(double newCost);   
+    double setCost(double newCost);
+
+    /**
+     * @brief Coverts the Artist instance into json.
+     * @return The json form of the artist.
+    */
+    crow::json::wvalue convertToJson();
+
+    /**
+     * @brief Updates an artist instance from given json.
+     * @param readValueJson The json to be read.
+     * @exception invalid_argument If the name is blank.
+     * @exception invalid_argument If the description is blank.
+     * @exception invalid_argument If the cost is negative.
+    */
+    void updateFromJson(crow::json::rvalue readValueJson);
 };
 
 #endif

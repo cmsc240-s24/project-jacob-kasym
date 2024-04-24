@@ -7,13 +7,18 @@
 
 #include "Artist.h"
 using namespace std;
-
+using namespace crow;
 
 Artist::Artist(string initialName, string initialType, double initialCost)
 {
     setName(initialName);
     setDescription(initialType);
     setCost(initialCost);
+}
+
+Artist::Artist(crow::json::rvalue readValueJson)
+{
+    updateFromJson(readValueJson);
 }
 
 string Artist::getName()
@@ -59,4 +64,20 @@ double Artist::setCost(double newCost)
     }
     cost = newCost;
     return cost;
+}
+
+json::wvalue Artist::convertToJson()
+{
+    json::wvalue writeValueJson;
+    writeValueJson["name"] = name;
+    writeValueJson["type"] = type;
+    writeValueJson["cost"] = cost;
+    return writeValueJson;
+}
+
+void Artist::updateFromJson(crow::json::rvalue readValueJson)
+{
+    setName(readValueJson["name"].s());
+    setDescription(readValueJson["type"].s());
+    setCost(readValueJson["cost"].d());
 }

@@ -7,13 +7,18 @@
 
 #include "Venue.h"
 using namespace std;
-
+using namespace crow;
 
 Venue::Venue(string initialCity, string initialAddress, double initialCost)
 {
     setCity(initialCity);
     setAddress(initialAddress);
     setCost(initialCost);
+}
+
+Venue::Venue(crow::json::rvalue readValueJson)
+{
+    updateFromJson(readValueJson);
 }
 
 string Venue::getCity()
@@ -59,4 +64,20 @@ double Venue::setCost(double newCost)
     }
     cost = newCost;
     return cost;
+}
+
+json::wvalue Venue::convertToJson()
+{
+    json::wvalue writeValueJson;
+    writeValueJson["city"] = city;
+    writeValueJson["address"] = address;
+    writeValueJson["cost"] = cost;
+    return writeValueJson;
+}
+
+void Venue::updateFromJson(crow::json::rvalue readValueJson)
+{
+    setCity(readValueJson["city"].s());
+    setAddress(readValueJson["address"].s());
+    setCost(readValueJson["cost"].d());
 }
