@@ -6,6 +6,7 @@
 #ifndef EVENT_H
 #define EVENT_H
 #include <string>
+#include <crow.h>
 #include "Artist.h"
 #include "Venue.h"
 
@@ -90,6 +91,18 @@ public:
      * @param Venue location : new location of the event
     */
     void setWhere(Venue location);
+
+    /**
+     * @brief Converts the Event instance into json
+     * @return The json form of the event
+    */
+    crow::json::wvalue convertToJson();
+
+    /**
+     * @brief Updates an event instance from given json
+     * @param rvalue readValueJson : the json to be read
+    */
+    void updateFromJson(crow::json::rvalue readValueJson);
 };
 
 #endif
