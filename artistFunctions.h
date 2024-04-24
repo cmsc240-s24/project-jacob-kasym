@@ -13,7 +13,4 @@ crow::response readAllArtists(crow::request req);
 void updateArtist(crow::request req, crow::response& res, std::string name);
 crow::response deleteArtist(std::string name);
 
-void saveToFile(std::map<std::string, Artist> data, std::string filename);
-std::map<std::string, Artist> loadFromFile(std::string filename);
-
 #endif

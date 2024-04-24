@@ -8,15 +8,6 @@ using namespace crow;
 
 extern map<string, Artist> artistMap;
 
-json::wvalue convertArtistToJson(Artist artist)
-{
-    json::wvalue writeValueJson;
-    writeValueJson["name"] = artist.getName();
-    writeValueJson["type"] = artist.getDescription();
-    writeValueJson["cost"] = artist.getCost();
-    return writeValueJson;
-}
-
 response createArtist(request req) 
 {
     // Load the request body string into a JSON read value.
@@ -33,7 +24,7 @@ response createArtist(request req)
     artistMap[artist.getName()] = artist;
 
     // Return the created artist as a JSON string.
-    return response(201, convertArtistToJson(artist).dump());
+    return response(201, artist.convertToJson().dump());
 }
 
 response readArtist(string name) 
@@ -44,7 +35,7 @@ response readArtist(string name)
         Artist artist = artistMap.at(name);
 
         // Return the artist as a JSON string.
-        return response(convertArtistToJson(artist).dump());
+        return response(artist.convertToJson().dump());
     } 
     catch (out_of_range& exception) 
     {
@@ -64,7 +55,7 @@ response readAllArtists(request req)
     {
         // first: gives you access to the first item in the pair.
         // second: gives you access to the second item in the pair.
-        jsonWriteValue[index] = convertArtistToJson(keyValuePair.second);
+        jsonWriteValue[index] =keyValuePair.second.convertToJson();
         index++;
     }
 
@@ -97,7 +88,7 @@ void updateArtist(request req, response& res, string name)
         // Return the updated artist as a JSON string.
         res.code = 200;
         res.set_header("Content-Type", "application/json");
-        res.write(convertArtistToJson(artist).dump());
+        res.write(artist.convertToJson().dump());
         res.end();
     } 
     catch (out_of_range& exception) 
@@ -126,65 +117,4 @@ response deleteArtist(string name)
         // If the artist was not found in the map return a 404 not found error.
         return response(404, "Artist not found");
     }
-}
-
-void saveToFile(map<string, Artist> data, string filename)  
-{
-    // Open the file for writing
-    ofstream file(filename);
-
-    if (file.is_open()) 
-    {
-        // Create a new JSON write value use to write to the file.
-        json::wvalue jsonWriteValue;
-        
-        // For each object in the map, convert the object to JSON and add to the write value.
-        int index = 0;
-        for (pair<string, Artist> keyValuePair : data)
-        {
-            // first: gives you access to the first item in the pair.
-            // second: gives you access to the second item in the pair.
-            jsonWriteValue[index] = convertArtistToJson(keyValuePair.second);
-            index++;
-        }
-
-        // Write the JSON to the file.
-        file << jsonWriteValue.dump();
-        file.close();
-    }
-}
-
-
-map<string, Artist> loadFromFile(string filename) 
-{
-    map<string, Artist> data;
-    
-    // Open the file for reading.
-    ifstream file(filename);
-
-    // If the file is open. 
-    if (file.is_open()) 
-    {      
-        // Create a stream for reading in the file.
-        ostringstream stringStreamJson;
-
-        // Read the entire JSON string.
-        stringStreamJson << file.rdbuf();
-
-        // Load the string into a JSON read value object.
-        json::rvalue jsonReadValue = json::load(stringStreamJson.str());
-
-        // Close the file.
-        file.close();
-
-        // For each item in the JSON convert it to an object, 
-        // and add it to the data map.
-        for (json::rvalue item : jsonReadValue) 
-        {
-            Artist artist{item["name"].s(), item["type"].s(), item["cost"].d()};
-            data[artist.getName()] = artist;
-        }
-    }
-    
-    return data;
 }

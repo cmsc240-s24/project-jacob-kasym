@@ -20,8 +20,7 @@ class Event
 private: 
     std::string id;
     Artist artist;
-    template <typename T>
-    Venue<T> location;
+    Venue location;
     std::string date;
     std::string time;
 
