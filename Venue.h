@@ -8,7 +8,6 @@
 #include <string>
 #include <vector>
 
-template <typename T>
 /**
  * @class Venue
  * @brief A class that represents a Venue.
@@ -20,7 +19,6 @@ class Venue
 private:
     std::string city;
     std::string address;
-    T size;
     double cost;
 public:
     /**
@@ -33,7 +31,7 @@ public:
      * @exception invalid_argument If the address is blank.
      * @exception invalid_argument If the cost is negative.
     */
-    Venue(std::string initialCity, std::string initialAddress, T initialSize, double initialCost);
+    Venue(std::string initialCity, std::string initialAddress, double initialCost);
     
     /**
      * @brief Shows the city of the venue.
@@ -62,19 +60,6 @@ public:
      * @exception invalid_argument If the new address is blank.
     */
     std::string setAddress(std::string newAddress);
-
-    /**
-     * @brief Shows the capacity of the venue.
-     * @return The int capacity.
-    */
-    T getCapacity();
-
-    /**
-     * @brief Changes the capacity of the venue.
-     * @return The new capacity.
-     * @exception invalid_argument If the capcity is non-postive.
-    */
-    T setCapacity(T newCapacity);
 
     /**
      * @brief Shows the cost of the venue.

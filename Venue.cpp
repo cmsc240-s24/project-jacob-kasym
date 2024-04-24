@@ -8,23 +8,20 @@
 #include "Venue.h"
 using namespace std;
 
-template <typename T>
-Venue<T>::Venue(string initialCity, string initialAddress, T initialCapacity, double initialCost)
+
+Venue::Venue(string initialCity, string initialAddress, double initialCost)
 {
     setCity(initialCity);
     setAddress(initialAddress);
-    setCapacity(initialCapacity);
     setCost(initialCost);
 }
 
-template <typename T>
-string Venue<T>::getCity()
+string Venue::getCity()
 {
     return city;
 }
 
-template <typename T>
-string Venue<T>::setCity(string newCity)
+string Venue::setCity(string newCity)
 {
     if (newCity == "")
     {
@@ -34,14 +31,12 @@ string Venue<T>::setCity(string newCity)
     return city;
 }
 
-template <typename T>
-string Venue<T>::getAddress()
+string Venue::getAddress()
 {
     return address;
 }
 
-template <typename T>
-string Venue<T>::setAddress(string newAddress)
+string Venue::setAddress(string newAddress)
 {
     if (newAddress == "")
     {
@@ -51,27 +46,12 @@ string Venue<T>::setAddress(string newAddress)
     return address;
 }
 
-template <typename T>
-T Venue<T>::getCapacity()
-{
-    return size;
-}
-
-template <typename T>
-T Venue<T>::setCapacity(T newCapacity)
-{
-    size = newCapacity;
-    return size;
-}
-
-template <typename T>
-double Venue<T>::getCost()
+double Venue::getCost()
 {
     return cost;
 }
 
-template <typename T>
-double Venue<T>::setCost(double newCost)
+double Venue::setCost(double newCost)
 {
     if (newCost < 0)
     {

@@ -6,12 +6,12 @@ TEST_CASE("Testing Venue class functionality")
 {
     SUBCASE("Blank Constructor should throw an exception")
     {
-        CHECK_THROWS_AS(Venue<int> emptyCity("", "290 Blvd", 1, 1.0), std::invalid_argument);
-        CHECK_THROWS_AS(Venue<int> emptyAddress("Toronto ON", "", 1, 1.0), std::invalid_argument);
-        CHECK_THROWS_AS(Venue<int> negCost("Toronto ON", "290 Blvd", 1, -1.0), std::invalid_argument);
+        CHECK_THROWS_AS(Venue emptyCity("", "290 Blvd",  1.0), std::invalid_argument);
+        CHECK_THROWS_AS(Venue emptyAddress("Toronto ON", "", 1.0), std::invalid_argument);
+        CHECK_THROWS_AS(Venue negCost("Toronto ON", "290 Blvd", -1.0), std::invalid_argument);
     }
     
-    Venue<int> venue("Toronto ON", "290 Blvd", 10, 5.0);
+    Venue venue("Toronto ON", "290 Blvd", 5.0);
 
     SUBCASE("getCity should return the set city")
     {
@@ -66,21 +66,4 @@ TEST_CASE("Testing Venue class functionality")
     {
         CHECK_THROWS_AS(venue.setCost(-1.0), std::invalid_argument);
     }
-
-    Venue<double> venue2("something", "something", 25.4, 0.0);
-    Venue<std::string> venue3("something", "something", "40", 0.0);
-
-    SUBCASE("getCapacity should return the set size")
-    {
-        CHECK(venue.getCapacity() == 10);
-        CHECK(venue2.getCapacity() == 25.4);
-        CHECK(venue3.getCapacity() == "40");
-    } 
-
-    SUBCASE("setCapacity should return the set size")
-    {
-        CHECK(venue.setCapacity(5) == 5);
-        CHECK(venue2.setCapacity(6.7) == 6.7);
-        CHECK(venue3.setCapacity("20") == "20");
-    } 
 }
