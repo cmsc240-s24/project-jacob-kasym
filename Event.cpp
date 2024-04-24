@@ -55,3 +55,17 @@ void Event::setWhere(Venue location)
     this.location = location;
 }
 
+json::wvalue Event::convertToJson()
+{
+    json::wvalue writeValueJson;
+    writeValueJson["id"] = id;
+    writeValueJson["artist"]["name"] = artist.getName();
+    writeValueJson["venue"]["city"] = location.getCity();
+    writeValueJson["date"] = date;
+    writeValueJson["time"] = time;
+}
+
+
+
+
+
