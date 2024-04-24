@@ -96,6 +96,8 @@ public:
      * @exception invalid_argument If the cost is negative.
     */
     void updateFromJson(crow::json::rvalue readValueJson);
+
+    std::string getId() {return city;}
 };
 
 #endif

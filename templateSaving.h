@@ -1,5 +1,5 @@
-#ifndef TEMPLATESAVING_H
-#define TEMPLATESAVING_H
+#ifndef TEMPLATE_SAVING_H
+#define TEMPLATE_SAVING_H
 
 #include <map>
 #include <string>
