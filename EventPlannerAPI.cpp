@@ -3,8 +3,8 @@
 #include <string>
 #include "Artist.h"
 #include "Venue.h"
-#include "Event.h"
-#include "PastEvent.h"
+//#include "Event.h"
+//#include "PastEvent.h"
 #include "artistFunctions.h"
 #include "venueFunctions.h"
 #include "templateSaving.h"
@@ -17,9 +17,9 @@ map<string, Artist> artistMap = loadFromFile<Artist>("artists.json");
 //map to store Venues
 map<string, Venue> venueMap = loadFromFile<Venue>("venues.json");
 //map to store future Events
-map<string, Event> futureMap = loadFromFile<Event>("events.json");
+//map<string, Event> eventMap = loadFromFile<Event>("events.json");
 //map to store Past Events
-map<string, PastEvent> pastMap;
+//map<string, PastEvent> pastMap;
 
 int main()
 {
@@ -46,6 +46,6 @@ int main()
 
     saveToFile<Artist>(artistMap, "artists.json");
     saveToFile<Venue>(venueMap, "venues.json");
-    saveToFile<Event>(futureMap, "events.json");
+    //saveToFile<Event>(futureMap, "events.json");
 
 }

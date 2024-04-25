@@ -65,7 +65,7 @@ public:
      * @brief Getting cost of the event ticket
      * @return T cost of the event
     */
-    float getCost();
+    double getCost();
 
     /**
      * @brief Getting date and time of the event
