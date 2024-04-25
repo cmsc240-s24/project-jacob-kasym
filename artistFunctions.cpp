@@ -10,12 +10,21 @@ extern map<string, Artist> artistMap;
 
 response createArtist(request req) 
 {
+    string apiKeyHeader = "Authorization";
+    string expectedApiKey = "Key";
+    
+    // Validate the api key in the request header.
+    if (!req.headers.count(apiKeyHeader) || req.headers.find(apiKeyHeader)->second != expectedApiKey) 
+    {
+        return response(403, "Forbidden");
+    }
+
     // Load the request body string into a JSON read value.
     json::rvalue readValueJson = json::load(req.body);
 
     // If there was a problem converting the body text to JSON return an error.
     if (!readValueJson) 
-        return response(400, "Invalid JSON");
+        return response(400, "Bad Request");
     
     // Create a new artist.
     Artist artist{readValueJson["name"].s(), readValueJson["type"].s(), readValueJson["cost"].d()};
@@ -64,6 +73,17 @@ response readAllArtists(request req)
 
 void updateArtist(request req, response& res, string name) 
 {
+    string apiKeyHeader = "Authorization";
+    string expectedApiKey = "Key";
+    
+    // Validate the api key in the request header.
+    if (!req.headers.count(apiKeyHeader) || req.headers.find(apiKeyHeader)->second != expectedApiKey) 
+    {
+        res.code = 403; // Unauthorized
+        res.end("Forbidden");
+        return;
+    }
+
     try 
     {
         // Get the artist from the artist map.
@@ -99,8 +119,17 @@ void updateArtist(request req, response& res, string name)
     }
 }
 
-response deleteArtist(string name) 
+response deleteArtist(request req, string name) 
 {
+    string apiKeyHeader = "Authorization";
+    string expectedApiKey = "Key";
+    
+    // Validate the api key in the request header.
+    if (!req.headers.count(apiKeyHeader) || req.headers.find(apiKeyHeader)->second != expectedApiKey) 
+    {
+        return response(403, "Forbidden");
+    }
+
     try 
     {
         // Get the artist from the artist map.

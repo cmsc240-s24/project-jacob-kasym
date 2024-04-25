@@ -1,4 +1,1 @@
-[
-{"name": "Band", "type": "Music", "cost": 10.2},
-{"name":"Troupe", "type":"Theatre", "cost": 5.3}
-]
+[{"cost":10.2,"name":"Band","type":"Music"},{"type":"To","name":"Got","cost":13.2},{"cost":5.3,"name":"Troupe","type":"Theatre"}]
