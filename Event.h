@@ -18,7 +18,7 @@
 */
 class Event
 {
-private: 
+protected: 
     std::string id;
     Artist artist;
     Venue location;

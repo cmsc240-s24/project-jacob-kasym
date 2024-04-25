@@ -15,8 +15,8 @@ Venue.o: Venue.cpp Venue.h
 Event.o: Event.cpp Event.h
 	g++ Event.cpp -c
 
-PastEvent.o: PastEvent.cpp PastEvent.h
-	1
+PastEvent.o: PastEvent.cpp PastEvent.h Event.h
+	g++ PastEvent.cpp -c
 
 static-analysis:
 	cppcheck *.cpp
