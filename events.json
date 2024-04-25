@@ -1,1 +1,1 @@
-[{"venue":{"city":""},"time":"4:00","date":"12/02/2023","id":"1","artist":{"name":""}}]
+[{"venue":{"city":"Toronto"},"time":"4:00","date":"12/02/2023","id":"1","artist":{"name":"Band"}},{"artist":{"name":"Got"},"id":"2","date":"9/12/2023","time":"5:00","venue":{"city":"Richmond"}},{"venue":{"city":"Richmond"},"time":"5:00","date":"11/02/2023","id":"3","artist":{"name":"Troupe"}}]
