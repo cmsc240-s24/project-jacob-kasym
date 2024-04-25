@@ -110,16 +110,13 @@ In the context of this API, {id} would typically be replaced by a unique identif
    - **Response**: `201 Created` with the created Event object in the body.
    - **Error**: `400 Bad Request` if input validation fails; `403 Forbidden` if the user is unauthorzied.
 
-- **GET** `/api/events`
-   - **Description**: Retrieves a list of all Events, past or future.
-   - **Response**: `200 OK` with an array of Event objects in the body.
 
 - **GET** `/api/events/{id}`
    - **Description**: Retrieves the details of the specific Event.
    - **Response**: `200 OK` with the Event object in the body.
    - **Error**: `404 Not Found` if the Event does not exist.
 
-- **GET** `/api/events?upcoming`
+- **GET** `/api/events`
    - **Desciption**: Retrieves a list of all upcoming Events
    - **Response**: `200 OK` with an array of Event objects in the body.
 
@@ -135,18 +132,13 @@ In the context of this API, {id} would typically be replaced by a unique identif
    - **Desciption**: Retrieves a list of all Events by a specific artist.
    - **Response**: `200 OK` with an array of Event objects in the body.
 
-- **GET** `/api/events?sort={date}`
+- **GET** `/api/events?sort`
    - **Desciption**: Retrieves a list of all Events in order of when they occur.
    - **Response**: `200 OK` with an array of Event objects in the body.
 
-- **GET** `/api/events/{id}?review`
+- **GET** `/api/events/past/{id}`
    - **Description**: Gives a random review from the Past Event.
    - **Response**: `200 OK` with the random review in the body.
-   - **Error**: `400 Bad Request` if the event is not a Past Event; `404 Not Found` if the Event does not exist;
-
-- **GET** `/api/events/{id}?recording`
-   - **Description**: Plays a recording of a past event if it exists.
-   - **Response**: `200 OK` while playing the recording if found, the message, none found if not recorded.
    - **Error**: `400 Bad Request` if the event is not a Past Event; `404 Not Found` if the Event does not exist;
 
 - **PUT** `/api/events/{id}`
