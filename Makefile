@@ -1,4 +1,4 @@
-all: Artist.o Venue.o static-analysis run-unit-tests docs
+all: static-analysis Artist.o Venue.o Event.o run-unit-tests docs EventPlannerAPI.o EventPlannerAPI
 
 EventPlannerAPI: EventPlannerAPI.o Artist.o Venue.o Event.o venueFunctions.h venueFunctions.cpp artistFunctions.h  artistFunctions.cpp eventFunctions.h eventFunctions.cpp
 	g++ -lpthread EventPlannerAPI.o Artist.o Venue.o Event.o venueFunctions.cpp artistFunctions.cpp eventFunctions.cpp -o EventPlannerAPI
@@ -13,7 +13,7 @@ Venue.o: Venue.cpp Venue.h
 	g++ Venue.cpp -c
 
 Event.o: Event.cpp Event.h
-	G++ Event.cpp -c
+	g++ Event.cpp -c
 
 PastEvent.o: PastEvent.cpp PastEvent.h
 	1

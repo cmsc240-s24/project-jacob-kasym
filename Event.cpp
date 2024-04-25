@@ -17,6 +17,11 @@ Event::Event(std::string iid, Artist iartist, Venue ilocation, std::string idate
     time = itime;
 }
 
+Event::Event(crow::json::rvalue readValueJson)
+{
+    updateFromJson(readValueJson); 
+}
+
 string Event::getId()
 {
     return id;

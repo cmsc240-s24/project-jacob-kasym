@@ -38,6 +38,8 @@ public:
     */
     Event(std::string id, Artist artist, Venue location, std::string date, std::string time);
 
+    Event(crow::json::rvalue readValueJson);
+
     /**
      * @brief Getting id of the event
      * @return string id of the event
