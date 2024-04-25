@@ -1,6 +1,7 @@
 #include <crow.h>
 #include <map>
 #include <string>
+#include "eventFunctions.h"
 #include "Event.h"
 #include "PastEvent.h"
 
@@ -12,6 +13,39 @@ extern map<string, Artist> artistMap;
 extern map<string, Venue> venueMap;
 extern map<string, PastEvent> pastMap;
 
+
+response readRandomReview(string searchString){
+    json::wvalue jsonWriteValue;
+
+    try
+    {
+        PastEvent pastevent = pastMap.at(searchString);
+        json::wvalue jsonWriteValue;
+        jsonWriteValue["random review"] = pastevent.getReview();
+        return response(200, jsonWriteValue.dump());
+    }
+    catch(out_of_range& exception)
+    {
+        return response(404, "Event Not Found");
+    }
+}
+
+response readPastEvent(string id)
+{
+
+    try
+    {
+        //Get the event id from the event map
+        PastEvent event = pastMap.at(id);
+
+        //return the event as a JSON string
+        return response(event.convertToJson().dump());
+    }
+    catch(out_of_range& exception)
+    {
+        return response(404, "Event Not Found");
+    }
+}
 //printing out all past events
 response readPastEvents()
 {

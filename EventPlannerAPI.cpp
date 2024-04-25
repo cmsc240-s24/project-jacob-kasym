@@ -34,6 +34,7 @@ int main()
     CROW_ROUTE(app, "/api/events/<string>").methods("GET"_method)(readEvent);
     CROW_ROUTE(app, "/api/events/<string>").methods("PUT"_method)(updateEvent);
     CROW_ROUTE(app, "/api/events/<string>").methods("DELETE"_method)(deleteEvent);
+    CROW_ROUTE(app, "/api/events/past/<string>").methods("GET"_method)(readRandomReview);
     // CROW_ROUTE(app, "api/events?artist=<string>").methods("GET"_method)(searchArtist);
     // CROW_ROUTE(app, "api/events?location=<string>").methods("GET"_method)(searchVenue);
 
@@ -58,5 +59,5 @@ int main()
     saveToFile<Artist>(artistMap, "artists.json");
     saveToFile<Venue>(venueMap, "venues.json");
     saveToFile<Event>(eventMap, "events.json");
-
+    saveToFile<PastEvent>(pastMap, "pastevents.json");
 }

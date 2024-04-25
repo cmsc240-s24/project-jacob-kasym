@@ -18,6 +18,8 @@ class PastEvent: public Event
 
         std::string addReview(std::string review);
 
+        
+
         crow::json::wvalue convertToJson();
 
         void updateFromJson(crow::json::rvalue readValueJson);
