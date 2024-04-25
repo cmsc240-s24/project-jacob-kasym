@@ -32,11 +32,15 @@ VenueTest: VenueTest.cpp Venue.o
 
 EventTest: EventTest.cpp Event.o
 	g++ -lpthread EventTest.cpp Event.o -o EventTest
-run-unit-tests: ArtistTest VenueTest
-	./ArtistTest; ./VenueTest
+
+PastEventTest: PastEventTest.cpp PastEvent.o Event.o Artist.o Venue.o
+	g++ -lpthread PastEventTest.cpp PastEvent.o Event.o Artist.o Venue.o -o PastEventTest
+	
+run-unit-tests: ArtistTest VenueTest PastEventTest
+	./ArtistTest; ./VenueTest; ./PastEventTest
 
 clean-code:
-	rm -f *.o ArtistTest VenueTest EventPlannerAPI
+	rm -f *.o ArtistTest VenueTest PastEventTest EventPlannerAPI
 
 clean-docs:
 	rm -r -f ./docs
