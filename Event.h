@@ -25,8 +25,9 @@ private:
     std::string date;
     std::string time;
 
-
 public:
+    Event() {}
+    
     /**
      * @brief Constructor for the Event class.
      * @param string id : Initial id of the event

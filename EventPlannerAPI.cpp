@@ -3,11 +3,13 @@
 #include <string>
 #include "Artist.h"
 #include "Venue.h"
-//#include "Event.h"
+#include "Event.h"
 //#include "PastEvent.h"
 #include "artistFunctions.h"
 #include "venueFunctions.h"
+#include "eventFunctions.h"
 #include "templateSaving.h"
+
 
 using namespace std;
 using namespace crow;
@@ -17,7 +19,7 @@ map<string, Artist> artistMap = loadFromFile<Artist>("artists.json");
 //map to store Venues
 map<string, Venue> venueMap = loadFromFile<Venue>("venues.json");
 //map to store future Events
-//map<string, Event> eventMap = loadFromFile<Event>("events.json");
+map<string, Event> eventMap = loadFromFile<Event>("events.json");
 //map to store Past Events
 //map<string, PastEvent> pastMap;
 
@@ -26,6 +28,12 @@ int main()
 
     SimpleApp app;
 
+    // Events
+    CROW_ROUTE(app, "/api/events").methods("POST"_method)(createEvent);
+    CROW_ROUTE(app, "/api/events").methods("GET"_method)(readAllEvents);
+    CROW_ROUTE(app, "/api/events/<string>").methods("GET"_method)(readEvent);
+    CROW_ROUTE(app, "/api/events/<string>").methods("PUT"_method)(updateEvent);
+    CROW_ROUTE(app, "/api/events/<string>").methods("DELETE"_method)(deleteEvent);  
 
     // Artists
     CROW_ROUTE(app, "/api/artists").methods("POST"_method)(createArtist);
@@ -46,6 +54,6 @@ int main()
 
     saveToFile<Artist>(artistMap, "artists.json");
     saveToFile<Venue>(venueMap, "venues.json");
-    //saveToFile<Event>(futureMap, "events.json");
+    saveToFile<Event>(eventMap, "events.json");
 
 }
