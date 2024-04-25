@@ -78,7 +78,7 @@ crow::json::wvalue Event::convertToJson()
     crow::json::wvalue writeValueJson;
     writeValueJson["id"] = id;
     writeValueJson["artist"]["name"] = artist.getName();
-    writeValueJson["venue"]["city"] = location.getCity();
+    writeValueJson["venue"]["city"]= location.getCity();
     writeValueJson["date"] = date;
     writeValueJson["time"] = time;
     return writeValueJson;
@@ -87,8 +87,8 @@ crow::json::wvalue Event::convertToJson()
 void Event::updateFromJson(crow::json::rvalue readValueJson)
 {
     setId(readValueJson["id"].s());
-    setArtist(artistMap[readValueJson["artist"]["name"].s()]);
-    setWhere(venueMap[readValueJson["venue"]["city"].s()]);
+    setArtist(artistMap.at(readValueJson["artist"]["name"].s()));
+    setWhere(venueMap.at(readValueJson["venue"]["city"].s()));
     setWhen(readValueJson["date"].s(), readValueJson["time"].s());
 }
 
