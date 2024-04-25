@@ -49,7 +49,18 @@ TEST_CASE("Testing Past Event class functionality")
 
     SUBCASE("Testing updateFromJson Method")
     {
+        crow::json::rvalue updateJson = crow::json::load(R"({"venue":{"city":"City"},"time":"4:00","date":"12/02/2023","id":"2","artist":{"name":"Name"}, "reviews":{"0":"hey", "1":"world"}})");
+        finished.updateFromJson(updateJson);
 
+        CHECK(finished.getId() == "2");
+        CHECK(finished.getDate() == "12/02/2023");
+        CHECK(finished.getTime() == "4:00");
+        CHECK(finished.getArtist().getName() == "Name");
+        CHECK(finished.getWhere().getCity() == "City");
+        
+        std::string oneReview = finished.getReview();
+        bool isReview = (oneReview == "hey") || (oneReview == "world");
 
+        CHECK(isReview);
     }
 }
