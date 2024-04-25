@@ -38,6 +38,7 @@ crow::json::wvalue PastEvent::convertToJson()
         writeValueJson["reviews"][index] = review;
         index++;
     }
+    return writeValueJson;
 }
 
 void PastEvent::updateFromJson(crow::json::rvalue readValueJson)
@@ -47,11 +48,9 @@ void PastEvent::updateFromJson(crow::json::rvalue readValueJson)
     setWhere(venueMap.at(readValueJson["venue"]["city"].s()));
     setWhen(readValueJson["date"].s(), readValueJson["time"].s());
     reviews.clear();
-    reviews = readValueJson["reviews"].lo();
-    int index = 0;
-    for(crow::json::rvalue keyValue : readValueJson["reviews"].lo())
+    
+    for(crow::json::rvalue review : readValueJson["reviews"])
     {
-        reviews.push_back(keyValue[index].s());
-        index++;
+        reviews.push_back(review.s());
     }
 }
