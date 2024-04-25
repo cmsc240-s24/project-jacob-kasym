@@ -30,4 +30,26 @@ TEST_CASE("Testing Past Event class functionality")
     {
         CHECK(finished.getReview() == "Good");
     }
+
+    SUBCASE("Testing convertoJson Method")
+    {
+        crow::json::wvalue jsonOutput = finished.convertToJson();
+        crow::json::rvalue jsonReadValue = crow::json::load(jsonOutput.dump());
+        
+        CHECK(jsonReadValue["id"].s() == "4");
+        CHECK(jsonReadValue["date"].s() == "12/12/2004");
+        CHECK(jsonReadValue["time"].s() == "2:32");
+        CHECK(jsonReadValue["artist"]["name"].s() == "Name");
+        CHECK(jsonReadValue["venue"]["city"].s() == "City");
+        for(crow::json::rvalue review : jsonReadValue["reviews"])
+        {
+            CHECK(review.s() == "Good");
+        }
+    }
+
+    SUBCASE("Testing updateFromJson Method")
+    {
+
+
+    }
 }
