@@ -231,6 +231,33 @@ response readAllEvents(request req)
 
 void updateEvent(request req, response& res, string id)
 {
+    if(req.url_params.get("finished"))
+    {
+        try
+        {
+            // Get the event from the event map
+            Event event = eventMap.at(id);
+
+            PastEvent finishedEvent(event.getId(), event.getArtist(), event.getWhere(), event.getDate(), event.getTime());
+
+            //adds it to pastMap
+            pastMap[id] = finishedEvent;
+            //update the event
+            eventMap.erase(id);
+
+            //return the updated event as a JSON string
+            res.code = 200;
+            res.set_header("Content-Type", "application/json");
+            res.write(event.convertToJson().dump());
+            res.end();
+        }
+        catch(out_of_range& exception)
+        {
+            res.code = 404;
+            res.end("Event Not Found");
+        }
+    }
+
     try
     {
         // Get the event from the event map
