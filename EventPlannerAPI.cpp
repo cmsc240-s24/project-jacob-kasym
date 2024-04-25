@@ -35,6 +35,8 @@ int main()
     CROW_ROUTE(app, "/api/events/<string>").methods("PUT"_method)(updateEvent);
     CROW_ROUTE(app, "/api/events/<string>").methods("DELETE"_method)(deleteEvent);
     CROW_ROUTE(app, "/api/events/past/<string>").methods("GET"_method)(readRandomReview);
+    CROW_ROUTE(app, "/api/events/past/<string>").methods("PUT"_method)(addReview);
+
     // CROW_ROUTE(app, "api/events?artist=<string>").methods("GET"_method)(searchArtist);
     // CROW_ROUTE(app, "api/events?location=<string>").methods("GET"_method)(searchVenue);
 

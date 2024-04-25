@@ -10,8 +10,9 @@
 crow::response createEvent(crow::request req);
 crow::response readEvent(std::string name);
 crow::response readAllEvents(crow::request req);
-void updateEvent(crow::request req, crow::response& res, std::string name);
+void updateEvent(crow::request req, crow::response& res, std::string id);
 crow::response deleteEvent(std::string name);
 crow::response readRandomReview(std::string searchString);
+void addReview(crow::request req, crow::response& res, std::string id);
 
 #endif

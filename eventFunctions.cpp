@@ -280,3 +280,36 @@ response deleteEvent(string id)
     }
 }
 
+void addReview(request req, response& res, string id)
+{
+    try
+    {
+        // Get the event from the event map
+        PastEvent event = pastMap.at(id);
+
+        //Convert the request  body to json
+        json::rvalue readValueJson = json::load(req.body);
+
+        if(!readValueJson)
+        {
+            res.code = 400;
+            res.end("Invalid Json");
+            return;
+        }
+
+        //update the event
+        event.addReview(readValueJson["new review"].s());
+        pastMap[id] = event;
+
+        //return the updated event as a JSON string
+        res.code = 200;
+        res.set_header("Content-Type", "application/json");
+        res.write(event.convertToJson().dump());
+    }
+    catch(out_of_range& exception)
+    {
+        res.code = 404;
+        res.end("Event Not Found");
+    }
+}
+
