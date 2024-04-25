@@ -6,7 +6,7 @@ This API will allow for an easy line of communication between a touring artist a
 
 ## Background/Context
 
-When an performing artist decides to go on a tour, it can be hard to keep track of show dates/locations/times.  This is especially the case if they are a smaller group dealing with smaller venues, which are often liable to change/cancel.  New and longtime fans alike are often left scrambling at the last minute, scouring all of (if any) of bands and venues social media looking for last-minute changes.  This API should hopefully solve this problem by offering a line a communication from the artist to the fans, letting the artist add/delete/update shows as their information changes, and letting fans immediately see those changes.  Ideally, the fans can then sort/search through theses shows by their date/location, and if a recording of a finished show exists, the fan can listen to/watch it.
+When an performing artist decides to go on a tour, it can be hard to keep track of show dates/locations/times.  This is especially the case if they are a smaller group dealing with smaller venues, which are often liable to change/cancel.  New and longtime fans alike are often left scrambling at the last minute, scouring all of (if any) of bands and venues social media looking for last-minute changes.  This API should hopefully solve this problem by offering a line a communication from the artist to the fans, letting the artist add/delete/update shows as their information changes, and letting fans immediately see those changes.  Ideally, the fans can then sort/search through theses shows by their date/location, and leave reviews on the past events.
 
 ## Stakeholders
 
@@ -57,7 +57,7 @@ When an performing artist decides to go on a tour, it can be hard to keep track 
    - As an artist, I want to be able to add a new event that I am going to hold at some city.
 
 - **Read (GET)**
-   - As a customer or as an artist, I would like to know which events are going to be held in the next 6 months using this platform.
+   - As a customer or as an artist, I would like to know which events are going to be held using this platform.
 
 - **Update (PUT)**
    - As an artist, I want to update future event's date if time conflict appears.
@@ -65,20 +65,16 @@ When an performing artist decides to go on a tour, it can be hard to keep track 
 - **Delete (DELETE)**
    - As an artist, I want to delete my future event if it gets cancelled.
 ### Past Events
-- **Create (POST)**
+- **Update (PUT)**
    - As a customer, I want to leave a comment/review about past event
 - **Read (GET)**
    - As a customer or as an artist, I want to get information about past events
-- **Update (PUT)**
-   - As an artist, I want to update previous event's description
-- **Delete (DELETE)**
-   - As an artist, I want to delete information about previous events
 
 ### Artist
 - **Create (POST)**
    - As an artist, I want to create a new profile of verified artist type
 - **Read (GET)**
-   - As an artist, I want to read comments on my previous events left by costumers
+   - As an artist, I want to read reviews on my previous events left by costumers
 
    - As a customer, I want to read artist's profile description
 - **Update (PUT)**
@@ -95,8 +91,8 @@ When an performing artist decides to go on a tour, it can be hard to keep track 
 
 ## List Of Resources
 
-- **Past events**: events that occured 6 months before the current date
-- **Events**: events that will occur and are planned in the next 6 months
+- **Past events**: events that are placed into past events class
+- **Events**: events that will occur and are planned 
 - **Artist**: artist who will hold the event
 - **Venue**: city and its events that were in the past and the future
 
@@ -106,7 +102,7 @@ In the context of this API, {id} would typically be replaced by a unique identif
 ### Events/Past Events
 - **POST** `/api/events`
    - **Description**: Create a new Event.
-   - **Request BODY**: `{"id": "1", "artist": "BNL", "venue": "Toronto ON", "cost": 10, "date": "5/11/2024", "time": "6:00 PM"}`
+   - **Request BODY**: `{"id": "1", "artist": {"name":"BNL"}, "venue": {"city": "Toronto ON"}, "cost": 10, "date": "5/11/2024", "time": "6:00 PM"}`
    - **Response**: `201 Created` with the created Event object in the body.
    - **Error**: `400 Bad Request` if input validation fails; `403 Forbidden` if the user is unauthorzied.
 
@@ -149,15 +145,15 @@ In the context of this API, {id} would typically be replaced by a unique identif
 
 - **PUT** `/api/events/{id}?finished`
    - **Desciption**:  Turns a normal event into a Past Event/Updates a Past Event.
-   - **Request BODY**: `{"id": "1", "artist": "BNL", "venue": "Toronto ON", "cost": 10, "date": "5/11/2024", "time": "6:00 PM", "wasRecorded": true, "recording": "TorontoShow.mp3", "attendence": 1000, "reviews":["it was cool"]}`
+   - **Request BODY**: `{"id": "1", "artist": "BNL", "venue": "Toronto ON", "cost": 10, "date": "5/11/2024", "time": "6:00 PM"}`
    - **Response**: `200 OK` with the updated Event object in the body.
    - **Error**: `400 Bad Request` if input validation fails; `404 Not Found` if the Event does not exist; `403 Forbidden` if the user is unauthorzied.
 
-- **PUT** `/api/events/{id}?review`
+- **PUT** `/api/events/past/{id}`
    - **Description**: Adds a review to the Past Event
-   - **Request BODY**: `"it was cool"`
+   - **Request BODY**: `"{"new review" : "this is my review"}"`
    - **Response**: `200 OK` with the new review in the body.
-   - **Error**: `400 Bad Request` if the event is not a past event; `404 Not Found` if the Event does not exist;
+   - **Error**: `400 Bad Request` if the json is not appropriate; `404 Not Found` if the Event does not exist;
 
 - **DELETE** `/api/events/{id}`
    - **Description**: Deletes a specific event
@@ -182,7 +178,7 @@ In the context of this API, {id} would typically be replaced by a unique identif
 
 - **PUT** `/api/artists/{artist}`
    - **Desciption**:  Updates an existing Artist.
-   - **Request BODY**: `{"name": "BNL", "type": "Canadian Alt-Rock Band", "members": ["Ed Robertson", "Tyler Stewart"]}`
+   - **Request BODY**: `{"name": "BNL", "type": "Canadian Alt-Rock Band", "cost": 10.5}`
    - **Response**: `200 OK` with the updated Artist object in the body.
    - **Error**: `400 Bad Request` if input validation fails; `404 Not Found` if the Event does not exist; `403 Forbidden` if the user is unauthorzied.
 
@@ -194,7 +190,7 @@ In the context of this API, {id} would typically be replaced by a unique identif
 ### Venue
 - **POST** `/api/venues`
    - **Description**: Create a new Venue.
-   - **Request BODY**: `{"city": "Toronto ON", "address": "290 Bremner Blvd", "cost": 10, "space": 300}`
+   - **Request BODY**: `{"city": "Toronto ON", "address": "290 Bremner Blvd", "cost": 10}`
    - **Response**: `201 Created` with the created Venue object in the body.
    - **Error**: `400 Bad Request` if input validation fails; `403 Forbidden` if the user is unauthorzied.
 

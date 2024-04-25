@@ -1,1 +1,1 @@
-[{"cost":10.2,"name":"Band","type":"Music"},{"type":"To","name":"Got","cost":13.2},{"cost":5.3,"name":"Troupe","type":"Theatre"}]
+[{"type":"Music","name":"Band","cost":10.2},{"cost":13.2,"name":"Got","type":"To"},{"type":"Rap","name":"Jay-Z","cost":10.2},{"type":"Rock","name":"RHCP","cost":11.9},{"cost":5.3,"name":"Troupe","type":"Theatre"}]

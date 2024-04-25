@@ -1,1 +1,1 @@
-[{"reviews":["hey","world","now working review"],"venue":{"city":"Toronto"},"time":"4:00","date":"12/02/2023","id":"2","artist":{"name":"Band"}}]
+[{"artist":{"name":"Band"},"id":"2","date":"12/02/2023","time":"4:00","venue":{"city":"Toronto"},"reviews":["hey","world","now working review"]},{"reviews":["my first review"],"venue":{"city":"Toronto"},"time":"4:00","date":"12/02/2019","id":"3","artist":{"name":"Troupe"}}]
