@@ -16,7 +16,7 @@ class PastEvent: public Event
 
         std::string getReview();
 
-        void addReview(std::string review);
+        std::string addReview(std::string review);
 
         crow::json::wvalue convertToJson();
 

@@ -19,9 +19,10 @@ std::string PastEvent::getReview()
     return reviews.at(rand()%reviews.size());
 }
 
-void PastEvent::addReview(string review)
+std::string PastEvent::addReview(string review)
 {
     reviews.push_back(review);
+    return reviews.back();
 }
 
 crow::json::wvalue PastEvent::convertToJson()
@@ -39,6 +40,7 @@ crow::json::wvalue PastEvent::convertToJson()
         index++;
     }
     return writeValueJson;
+    return writeValueJson;
 }
 
 void PastEvent::updateFromJson(crow::json::rvalue readValueJson)
@@ -53,4 +55,5 @@ void PastEvent::updateFromJson(crow::json::rvalue readValueJson)
     {
         reviews.push_back(review.s());
     }
+    return;
 }
