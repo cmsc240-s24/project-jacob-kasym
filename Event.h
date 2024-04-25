@@ -47,7 +47,7 @@ public:
      * @brief Update id of the event
      * @param string id : new id of the event
     */
-    void setId(string id);
+    void setId(std::string id);
 
     /**
      * @brief Getting artist of the event
