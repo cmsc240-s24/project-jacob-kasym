@@ -5,13 +5,13 @@
 #include "Event.h"
 using namespace std;
 
-Event::Event(std::string id, Artist artist, Venue location, std::string date, std::string time)
+Event::Event(std::string iid, Artist iartist, Venue ilocation, std::string idate, std::string itime)
 {
-    this.id = id;
-    this.artist = artist;
-    this.location = location;
-    this.date = date
-    this.time = time;
+    id = iid;
+    artist = iartist;
+    location = ilocation;
+    date = idate;
+    time = itime;
 }
 
 string Event::getId()
@@ -24,9 +24,9 @@ Artist Event::getArtist()
     return artist;
 }
 
-void Event::setArtist(Artist artist)
+void Event::setArtist(Artist iartist)
 {
-    this.artist = artist;
+    artist = iartist;
 }
 
 float Event::getCost()
@@ -39,10 +39,10 @@ string Event::getWhen()
     return "Date: "+date+" at "+time;
 }
 
-void Event::setWhen(string date, string time);
+void Event::setWhen(string idate, string itime)
 {
-    this.date = date;
-    this.time = time;
+    date = idate;
+    time = itime;
 }
 
 string Event::getWhere()
@@ -50,19 +50,20 @@ string Event::getWhere()
     return "City: "+location.getCity() + " at "+location.getAddress();
 }
 
-void Event::setWhere(Venue location)
+void Event::setWhere(Venue ilocation)
 {
-    this.location = location;
+    location = ilocation;
 }
 
-json::wvalue Event::convertToJson()
+crow::json::wvalue Event::convertToJson()
 {
-    json::wvalue writeValueJson;
+    crow::json::wvalue writeValueJson;
     writeValueJson["id"] = id;
     writeValueJson["artist"]["name"] = artist.getName();
     writeValueJson["venue"]["city"] = location.getCity();
     writeValueJson["date"] = date;
     writeValueJson["time"] = time;
+    return writeValueJson;
 }
 
 

@@ -21,6 +21,7 @@ private:
     std::string type;
     double cost;
 public:
+    Artist() { }    
     /**
      * @brief The constructor for direct parameters.
      * @param initialName The string of the name.

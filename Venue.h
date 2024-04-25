@@ -21,6 +21,7 @@ private:
     std::string address;
     double cost;
 public:
+    
     /**
      * @brief The construtor for direct parameters.
      * @param initialCity The string of the city.
