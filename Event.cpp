@@ -42,9 +42,14 @@ float Event::getCost()
     return location.getCost() + artist.getCost();
 }
 
-string Event::getWhen()
+string Event::getDate()
 {
-    return "Date: "+date+" at "+time;
+    return date;
+}
+
+string Event::getTime()
+{
+    return time; 
 }
 
 void Event::setWhen(string idate, string itime)
@@ -53,9 +58,9 @@ void Event::setWhen(string idate, string itime)
     time = itime;
 }
 
-string Event::getWhere()
+Venue Event::getWhere()
 {
-    return "City: "+location.getCity() + " at "+location.getAddress();
+    return location;
 }
 
 void Event::setWhere(Venue ilocation)

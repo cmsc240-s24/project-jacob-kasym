@@ -68,10 +68,16 @@ public:
     float getCost();
 
     /**
-     * @brief Getting date and time of the event
-     * @return string representation of date and time
+     * @brief Getting date of the event
+     * @return string representation of date
     */
-    std::string getWhen();
+    std::string getDate();
+
+    /**
+     * @brief Getting time of the event
+     * @return string representation of time
+    */
+    std::string getTime();
 
     /**
      * @brief Update date and time of the event
@@ -82,9 +88,9 @@ public:
 
     /**
      * @brief Getting location of the event in string form
-     * @return string representation of location of the event
+     * @return Venue type location of the event
     */
-    std::string getWhere();
+    Venue getWhere();
 
     /**
      * @brief Update location of the event

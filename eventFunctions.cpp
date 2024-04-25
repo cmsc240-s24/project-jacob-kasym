@@ -94,5 +94,113 @@ void updateEvent(request req, response& res, string id)
         res.code = 404;
         res.end("Event Not Found");
     }
-    
+}
+
+response deleteEvent(string id)
+{
+    try
+    {
+        Event event = eventMap.at(id);
+
+        eventMap.erase(id);
+
+        return response(204);
+    }
+    catch(out_of_range& exception)
+    {
+        return response(404, "Event not found");
+    }
+}
+
+response searchArtist(string searchString)
+{
+    vector<Event> found;
+    //For each string/Event pair in the event map
+    for(pair<string, Event> eventPair : eventMap)
+    {
+        if(eventPair.second.getArtist().getName() == searchString)
+            found.push_back(eventPair.second);
+    }
+
+    json::wvalue jsonWriteValue;
+
+    int index = 0;
+    for(Event event : found)
+    {
+        jsonWriteValue[index] = event.convertToJson();
+        index++;
+    }
+
+    return response(200,jsonWriteValue.dump());
+}
+
+response searchVenue(string searchString)
+{
+    vector<Event> found;
+    //For each string/Event pair in the event map
+    for(pair<string, Event> eventPair : eventMap)
+    {
+        if(eventPair.second.getWhere().getCity() == searchString)
+            found.push_back(eventPair.second);
+    }
+
+    json::wvalue jsonWriteValue;
+
+    int index = 0;
+    for(Event event : found)
+    {
+        jsonWriteValue[index] = event.convertToJson();
+        index++;
+    }
+
+    return response(200,jsonWriteValue.dump());
+}
+
+struct
+{
+    bool operator()(pair<string, Event>& a, pair<string,Event>& b)
+    {
+        //substring of certain indices of the format MM/DD/YYYY
+        string year_a = a.second.getDate().substr(6,4);
+        string year_b = b.second.getDate().substr(6,4);
+        string month_a = a.second.getDate().substr(0,2);
+        string month_b = b.second.getDate().substr(0,2);
+        string day_a = a.second.getDate().substr(3,2);
+        string day_b = b.second.getDate().substr(3,2);
+
+        if(year_a < year_b)
+            return true;
+        if(year_a == year_b && month_a < month_b)
+            return true;
+        if(year_a == year_b && month_a == month_b && day_a < day_b)
+            return true;
+
+        return false;
+    }
+} comparatorDate;
+
+response sortDates(string sortString)
+{
+    vector<pair<string, Event>> eventsToSort;
+
+    for (pair<string, Event> eventPair : eventMap)
+    {
+        eventsToSort.push_back(eventPair);
+    }
+
+    if(sortString == "date")
+    {
+        sort(eventsToSort.begin(), eventsToSort.end(), comparatorDate);
+    }
+
+    json::wvalue jsonWriteValue;
+
+    int index = 0;
+    for(pair<string, Event> eventPair : eventsToSort)
+    {
+        jsonWriteValue[index] = eventPair.second.convertToJson();
+        index++;
+    }
+
+    return response(200, jsonWriteValue.dump());
 }
