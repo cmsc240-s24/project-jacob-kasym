@@ -256,6 +256,7 @@ void updateEvent(request req, response& res, string id)
         res.code = 200;
         res.set_header("Content-Type", "application/json");
         res.write(event.convertToJson().dump());
+        res.end();
     }
     catch(out_of_range& exception)
     {
@@ -305,6 +306,7 @@ void addReview(request req, response& res, string id)
         res.code = 200;
         res.set_header("Content-Type", "application/json");
         res.write(event.convertToJson().dump());
+        res.end();
     }
     catch(out_of_range& exception)
     {
