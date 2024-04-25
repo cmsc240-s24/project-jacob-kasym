@@ -33,7 +33,10 @@ int main()
     CROW_ROUTE(app, "/api/events").methods("GET"_method)(readAllEvents);
     CROW_ROUTE(app, "/api/events/<string>").methods("GET"_method)(readEvent);
     CROW_ROUTE(app, "/api/events/<string>").methods("PUT"_method)(updateEvent);
-    CROW_ROUTE(app, "/api/events/<string>").methods("DELETE"_method)(deleteEvent);  
+    CROW_ROUTE(app, "/api/events/<string>").methods("DELETE"_method)(deleteEvent);
+    // CROW_ROUTE(app, "api/events?artist=<string>").methods("GET"_method)(searchArtist);
+    // CROW_ROUTE(app, "api/events?location=<string>").methods("GET"_method)(searchVenue);
+
 
     // Artists
     CROW_ROUTE(app, "/api/artists").methods("POST"_method)(createArtist);

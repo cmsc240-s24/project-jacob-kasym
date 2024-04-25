@@ -13,5 +13,4 @@ crow::response readAllEvents(crow::request req);
 void updateEvent(crow::request req, crow::response& res, std::string name);
 crow::response deleteEvent(std::string name);
 
-
 #endif

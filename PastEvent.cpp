@@ -40,6 +40,7 @@ crow::json::wvalue PastEvent::convertToJson()
         index++;
     }
     return writeValueJson;
+    return writeValueJson;
 }
 
 void PastEvent::updateFromJson(crow::json::rvalue readValueJson)
@@ -49,9 +50,10 @@ void PastEvent::updateFromJson(crow::json::rvalue readValueJson)
     setWhere(venueMap.at(readValueJson["venue"]["city"].s()));
     setWhen(readValueJson["date"].s(), readValueJson["time"].s());
     reviews.clear();
-    for(crow::json::rvalue keyValue : readValueJson["reviews"])
+    
+    for(crow::json::rvalue review : readValueJson["reviews"])
     {
-        reviews.push_back(keyValue.s());
+        reviews.push_back(review.s());
     }
     return;
 }
