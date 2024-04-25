@@ -9,6 +9,7 @@ class PastEvent: public Event
     private:
         std::vector<std::string> reviews;
     public:
+        PastEvent() { }
         PastEvent(std::string id, Artist artist, Venue location, std::string date, std::string time);
         
         PastEvent(crow::json::rvalue readValueJson);

@@ -1,7 +1,7 @@
 all: static-analysis Artist.o Venue.o Event.o run-unit-tests EventPlannerAPI.o EventPlannerAPI
 
-EventPlannerAPI: EventPlannerAPI.o Artist.o Venue.o Event.o venueFunctions.h venueFunctions.cpp artistFunctions.h  artistFunctions.cpp eventFunctions.h eventFunctions.cpp
-	g++ -lpthread EventPlannerAPI.o Artist.o Venue.o Event.o venueFunctions.cpp artistFunctions.cpp eventFunctions.cpp -o EventPlannerAPI
+EventPlannerAPI: EventPlannerAPI.o Artist.o Venue.o Event.o PastEvent.o venueFunctions.h venueFunctions.cpp artistFunctions.h  artistFunctions.cpp eventFunctions.h eventFunctions.cpp
+	g++ -lpthread EventPlannerAPI.o Artist.o Venue.o Event.o PastEvent.o venueFunctions.cpp artistFunctions.cpp eventFunctions.cpp -o EventPlannerAPI
 
 EventPlannerAPI.o: EventPlannerAPI.cpp  Artist.h  Venue.h  Event.h templateSaving.h
 	g++ -Wall -c EventPlannerAPI.cpp

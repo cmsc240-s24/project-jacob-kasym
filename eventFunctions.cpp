@@ -2,6 +2,7 @@
 #include <map>
 #include <string>
 #include "Event.h"
+#include "PastEvent.h"
 
 using namespace std;
 using namespace crow;
@@ -9,6 +10,26 @@ using namespace crow;
 extern map<string, Event> eventMap;
 extern map<string, Artist> artistMap;
 extern map<string, Venue> venueMap;
+extern map<string, PastEvent> pastMap;
+
+//printing out all past events
+response readPastEvents()
+{
+    json::wvalue jsonWriteValue;
+
+    //For each past event in the map, convert the event to JSON and add to the write value
+    int index = 0;
+    for(pair<string,PastEvent> keyValuePair : pastMap)
+    {
+        // first: gives you access to the first item in the pair
+        // second: gives you access to the second item in the pair
+        jsonWriteValue[index] = keyValuePair.second.convertToJson();
+        index++;
+    }
+
+    return response(jsonWriteValue.dump());
+
+}
 
 response searchArtist(string searchString)
 {
@@ -151,6 +172,11 @@ response readAllEvents(request req)
     if(req.url_params.get("location"))
     {
         return searchVenue(req.url_params.get("location"));
+    }
+
+    if(req.url_params.get("past"))
+    {
+        return readPastEvents();
     }
 
     // Create a new JSON write value use to write to the file

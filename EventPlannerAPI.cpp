@@ -4,7 +4,7 @@
 #include "Artist.h"
 #include "Venue.h"
 #include "Event.h"
-//#include "PastEvent.h"
+#include "PastEvent.h"
 #include "artistFunctions.h"
 #include "venueFunctions.h"
 #include "eventFunctions.h"
@@ -21,7 +21,7 @@ map<string, Venue> venueMap = loadFromFile<Venue>("venues.json");
 //map to store future Events
 map<string, Event> eventMap = loadFromFile<Event>("events.json");
 //map to store Past Events
-//map<string, PastEvent> pastMap;
+map<string, PastEvent> pastMap = loadFromFile<PastEvent>("pastevents.json");
 
 int main()
 {
