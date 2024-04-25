@@ -25,8 +25,9 @@ private:
     std::string date;
     std::string time;
 
-
 public:
+    Event() {}
+    
     /**
      * @brief Constructor for the Event class.
      * @param string id : Initial id of the event
@@ -65,7 +66,7 @@ public:
      * @brief Getting cost of the event ticket
      * @return T cost of the event
     */
-    float getCost();
+    double getCost();
 
     /**
      * @brief Getting date of the event

@@ -10,6 +10,15 @@ extern map<string, Venue> venueMap;
 
 response createVenue(request req) 
 {
+    string apiKeyHeader = "Authorization";
+    string expectedApiKey = "Key";
+    
+    // Validate the api key in the request header.
+    if (!req.headers.count(apiKeyHeader) || req.headers.find(apiKeyHeader)->second != expectedApiKey) 
+    {
+        return response(403, "Forbidden");
+    }
+
     // Load the request body string into a JSON read value.
     json::rvalue readValueJson = json::load(req.body);
 
@@ -64,6 +73,17 @@ response readAllVenues(request req)
 
 void updateVenue(request req, response& res, string city) 
 {
+    string apiKeyHeader = "Authorization";
+    string expectedApiKey = "Key";
+    
+    // Validate the api key in the request header.
+    if (!req.headers.count(apiKeyHeader) || req.headers.find(apiKeyHeader)->second != expectedApiKey) 
+    {
+        res.code = 403; // Unauthorized
+        res.end("Forbidden");
+        return;
+    }
+
     try 
     {
         // Get the venue from the venue map.
@@ -99,8 +119,17 @@ void updateVenue(request req, response& res, string city)
     }
 }
 
-response deleteVenue(string city) 
+response deleteVenue(request req, string city) 
 {
+    string apiKeyHeader = "Authorization";
+    string expectedApiKey = "Key";
+    
+    // Validate the api key in the request header.
+    if (!req.headers.count(apiKeyHeader) || req.headers.find(apiKeyHeader)->second != expectedApiKey) 
+    {
+        return response(403, "Forbidden");
+    }
+
     try 
     {
         // Get the venue from the venue map.

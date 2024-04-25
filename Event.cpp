@@ -37,7 +37,7 @@ void Event::setArtist(Artist iartist)
     artist = iartist;
 }
 
-float Event::getCost()
+double Event::getCost()
 {
     return location.getCost() + artist.getCost();
 }

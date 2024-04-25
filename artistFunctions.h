@@ -11,6 +11,6 @@ crow::response createArtist(crow::request req);
 crow::response readArtist(std::string name);
 crow::response readAllArtists(crow::request req);
 void updateArtist(crow::request req, crow::response& res, std::string name);
-crow::response deleteArtist(std::string name);
+crow::response deleteArtist(crow::request req, std::string name);
 
 #endif
