@@ -1,10 +1,10 @@
 all: Artist.o Venue.o static-analysis run-unit-tests docs
 
-EventPlannerAPI: EventPlannerAPI.o Artist.o Venue.o Event.o PastEvent.o
-	g++ -lpthread -o EventPlannerAPI
+EventPlannerAPI: EventPlannerAPI.o Artist.o Venue.o venueFunctions.h venueFunctions.cpp artistFunctions.h  artistFunctions.cpp
+	g++ -lpthread EventPlannerAPI.o Artist.o Venue.o venueFunctions.cpp artistFunctions.cpp -o EventPlannerAPI
 
-EventPlannerAPI.o: EventPlannerAPI.cpp  Artist.h  Venue.h Event.h PastEvent.h templateSaving.h
-	g++ EventPlannerAPI.cpp -c
+EventPlannerAPI.o: EventPlannerAPI.cpp  Artist.h  Venue.h  templateSaving.h
+	g++ -Wall -c EventPlannerAPI.cpp
 
 Artist.o: Artist.cpp Artist.h
 	g++ Artist.cpp -c 
@@ -34,7 +34,7 @@ run-unit-tests: ArtistTest VenueTest
 	./ArtistTest; ./VenueTest
 
 clean-code:
-	rm -f *.o ArtistTest VenueTest
+	rm -f *.o ArtistTest VenueTest EventPlannerAPI
 
 clean-docs:
 	rm -r -f ./docs

@@ -21,6 +21,7 @@ private:
     std::string address;
     double cost;
 public:
+    Venue() {}
     
     /**
      * @brief The construtor for direct parameters.
