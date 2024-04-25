@@ -5,6 +5,9 @@
 #include "Event.h"
 using namespace std;
 
+extern map<string, Artist> artistMap;
+extern map<string, Venue> venueMap;
+
 Event::Event(std::string iid, Artist iartist, Venue ilocation, std::string idate, std::string itime)
 {
     id = iid;
@@ -17,6 +20,11 @@ Event::Event(std::string iid, Artist iartist, Venue ilocation, std::string idate
 string Event::getId()
 {
     return id;
+}
+
+void Event::setId(string iid)
+{
+    id = iid;
 }
 
 Artist Event::getArtist()
@@ -64,6 +72,14 @@ crow::json::wvalue Event::convertToJson()
     writeValueJson["date"] = date;
     writeValueJson["time"] = time;
     return writeValueJson;
+}
+
+void Event::updateFromJson(crow::json::rvalue readValueJson)
+{
+    setId(readValueJson["id"].s());
+    setArtist(artistMap[readValueJson["artist"]["name"].s()]);
+    setWhere(venueMap[readValueJson["venue"]["city"].s()]);
+    setWhen(readValueJson["date"].s(), readValueJson["time"].s());
 }
 
 
