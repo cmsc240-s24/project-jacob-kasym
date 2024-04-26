@@ -214,7 +214,7 @@ response readAllEvents(request req)
     //If there is a sort parameter on the request, then sort the sizes
     if(req.url_params.get("sort"))
     {
-        return sortDates(req.url_params.get("artist"));
+        return sortDates(req.url_params.get("sort"));
     }
 
     if(req.url_params.get("artist"))
