@@ -40,7 +40,7 @@ run-unit-tests: ArtistTest VenueTest PastEventTest EventTest
 	./ArtistTest; ./VenueTest; ./EventTest; ./PastEventTest
 
 clean-code:
-	rm -f *.o ArtistTest VenueTest PastEventTest EventPlannerAPI
+	rm -f *.o ArtistTest VenueTest PastEventTest EventTest EventPlannerAPI
 
 clean-docs:
 	rm -r -f ./docs
