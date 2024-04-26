@@ -128,8 +128,12 @@ In the context of this API, {id} would typically be replaced by a unique identif
    - **Desciption**: Retrieves a list of all Events by a specific artist.
    - **Response**: `200 OK` with an array of Event objects in the body.
 
-- **GET** `/api/events?sort`
+- **GET** `/api/events?sort={0}`
    - **Desciption**: Retrieves a list of all Events in order of when they occur.
+   - **Response**: `200 OK` with an array of Event objects in the body.
+
+- **GET** `/api/events?sort={1}`
+   - **Desciption**: Retrieves a list of all Events in reversed order of when they occur.
    - **Response**: `200 OK` with an array of Event objects in the body.
 
 - **GET** `/api/events/past/{id}`
