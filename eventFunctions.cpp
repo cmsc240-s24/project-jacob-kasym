@@ -71,7 +71,7 @@ response searchArtist(string searchString)
     //For each string/Event pair in the event map
     for(pair<string, Event> eventPair : eventMap)
     {
-        if(eventPair.second.getArtist().getName() == searchString)
+        if(eventPair.second.getArtist().getName().find(searchString) != string::npos)
             found.push_back(eventPair.second);
     }
 
@@ -93,7 +93,7 @@ response searchVenue(string searchString)
     //For each string/Event pair in the event map
     for(pair<string, Event> eventPair : eventMap)
     {
-        if(eventPair.second.getWhere().getCity() == searchString)
+        if(eventPair.second.getWhere().getCity().find(searchString) != string::npos)
             found.push_back(eventPair.second);
     }
 
