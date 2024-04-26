@@ -1,6 +1,7 @@
 #include <crow.h>
 #include <map>
 #include <string>
+#include <algorithm>
 #include "eventFunctions.h"
 #include "Event.h"
 #include "PastEvent.h"
@@ -132,7 +133,7 @@ struct
     }
 } comparatorDate;
 
-response sortDates()
+response sortDates(string forwardsOrBackwards)
 {
     vector<pair<string, Event>> eventsToSort;
 
@@ -147,12 +148,30 @@ response sortDates()
 
     json::wvalue jsonWriteValue;
 
-    int index = 0;
-    for(pair<string, Event> eventPair : eventsToSort)
+    if (forwardsOrBackwards == "0")
     {
-        jsonWriteValue[index] = eventPair.second.convertToJson();
-        index++;
+        int index = 0;
+        for(pair<string, Event> eventPair : eventsToSort)
+        {
+            jsonWriteValue[index] = eventPair.second.convertToJson();
+            index++;
+        }
+        return response(200, jsonWriteValue.dump());
     }
+    else
+    {
+        reverse(eventsToSort.begin(), eventsToSort.end());
+        int index = 0;
+        for(pair<string, Event> eventPair : eventsToSort)
+        {
+            jsonWriteValue[index] = eventPair.second.convertToJson();
+            index++;
+        }
+        return response(200, jsonWriteValue.dump());
+
+    }
+
+
 
     return response(200, jsonWriteValue.dump());
 }
@@ -195,7 +214,7 @@ response readAllEvents(request req)
     //If there is a sort parameter on the request, then sort the sizes
     if(req.url_params.get("sort"))
     {
-        return sortDates();
+        return sortDates(req.url_params.get("sort"));
     }
 
     if(req.url_params.get("artist"))
