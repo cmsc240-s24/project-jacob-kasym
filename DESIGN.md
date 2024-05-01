@@ -149,7 +149,6 @@ In the context of this API, {id} would typically be replaced by a unique identif
 
 - **PUT** `/api/events/{id}?finished`
    - **Desciption**:  Turns a normal event into a Past Event/Updates a Past Event.
-   - **Request BODY**: `{"id": "1", "artist": "BNL", "venue": "Toronto ON", "cost": 10, "date": "5/11/2024", "time": "6:00 PM"}`
    - **Response**: `200 OK` with the updated Event object in the body.
    - **Error**: `400 Bad Request` if input validation fails; `404 Not Found` if the Event does not exist; `403 Forbidden` if the user is unauthorzied.
 
