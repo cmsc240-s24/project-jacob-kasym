@@ -102,7 +102,7 @@ In the context of this API, {id} would typically be replaced by a unique identif
 ### Events/Past Events
 - **POST** `/api/events`
    - **Description**: Create a new Event.
-   - **Request BODY**: `{"id": "1", "artist": {"name":"BNL"}, "venue": {"city": "Toronto ON"}, "cost": 10, "date": "5/11/2024", "time": "6:00 PM"}`
+   - **Request BODY**: `{"venue":{"city":"Richmond"},"time":"17:00","date":"03/02/2023","id":"7","artist":{"name":"Band"}}`
    - **Response**: `201 Created` with the created Event object in the body.
    - **Error**: `400 Bad Request` if input validation fails; `403 Forbidden` if the user is unauthorzied.
 
@@ -143,7 +143,7 @@ In the context of this API, {id} would typically be replaced by a unique identif
 
 - **PUT** `/api/events/{id}`
    - **Desciption**:  Updates an existing Event.
-   - **Request BODY**: `{"id": "1", "artist": "BNL", "venue": "Toronto ON", "cost": 10, "date": "5/11/2024", "time": "6:00 PM"}`
+   - **Request BODY**: `{"venue":{"city":"Richmond"},"time":"17:00","date":"03/02/2023","id":"7","artist":{"name":"Band"}}`
    - **Response**: `200 OK` with the updated Event object in the body.
    - **Error**: `400 Bad Request` if input validation fails; `404 Not Found` if the Event does not exist; `403 Forbidden` if the user is unauthorzied.
 
